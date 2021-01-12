@@ -1,6 +1,6 @@
 # Lecture slides:
 
-* Lecture 1 - 
+* Lecture 1 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Introduction
 
 # Lecture videos
 
