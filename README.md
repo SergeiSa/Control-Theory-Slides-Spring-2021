@@ -4,7 +4,7 @@
 
 # Lecture videos
 
-* Lecture 1 - 
+* Lecture 1 -  
 
 # For contributors:
 
