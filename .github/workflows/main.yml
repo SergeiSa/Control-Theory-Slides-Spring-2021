@@ -1,0 +1,55 @@
+name: Build LaTeX document
+
+on: 
+  push:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+    branches:
+      - master
+
+
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+
+      - name: Compile LaTeX document Introduction
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Introduction/
+
+
+
+
+
+
+      - name: Save Introduction artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Introduction.pdf
+          path: Slides/Introduction/main.pdf 
+          
+          
+          
+          
+          
+      - name: Update compiled PDFs in git repository
+        if: github.event.pull_request.merged == true || github.event_name == 'push'
+        run: |
+          git config --global user.name 'CI PDF compiler'
+          git config --global user.email '<>'
+          git add Slides/Introduction/main.pdf
+          
+          
+          
+          
+          git commit -m "Update compiled PDFs"
+          git push

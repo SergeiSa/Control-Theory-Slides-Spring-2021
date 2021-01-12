@@ -1,0 +1,409 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Introduction, linear system representations}
+\subtitle{Control Theory, Lecture 1}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+
+\begin{itemize}
+\item Motivation
+\item Ordinary differential equations
+    \begin{itemize}
+    \item 1st order
+    \item n-th order
+    \end{itemize}
+\item Linear differential equations
+    \begin{itemize}
+    \item 1st order
+    \item n-th order
+    \item ...are what we will study
+    \end{itemize}
+\item Changing n-th order ODE to a State-Space form
+\item Read more
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{What is control?}
+% \framesubtitle{O}
+\begin{flushleft}
+
+The first obvious question is, what is control theory? The easiest strategy to answer this question is to bring examples of systems that you can \emph{learn how to control}:
+
+\begin{figure}
+\minipage{0.45\textwidth}
+  \includegraphics[width=\linewidth]{Picture1.jpg}
+  \caption{Drone}
+\endminipage\hfill
+\minipage{0.45\textwidth}
+  \includegraphics[width=\linewidth]{Picture2.jpg}
+  \caption{Robot arms}
+\endminipage
+
+\end{figure}
+
+But beware, this is not the whole answer!
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Why Control?}
+% \framesubtitle{Part 1}
+\begin{flushleft}
+
+The second most natural question to ask is - why do we need to study Control Theory? \emph{Why do Computer scientists need Control Theory?} 
+
+\bigskip
+
+\begin{exampleblock}{The easy answer is:}
+it is very useful in case you will work in robotics, industrial automation, self-driving vehicles, drones, aerospace, etc.
+\end{exampleblock}
+
+\bigskip
+
+\begin{alertblock}{But!}
+this answer does not tell the main part of the story - what about people who are NOT going to work in the listed areas?
+\end{alertblock}
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Control as an applied problem}
+\begin{flushleft}
+
+We propose to view Control Theory as not only yet-another-subject. Instead we can try to see Control Theory course as \textbf{an application of your combined skills as a CS student}
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Control as an applied problem}
+\framesubtitle{Skills you will learn and practice}
+\begin{flushleft}
+
+In this course we provide you with learning and practical tasks that require:
+
+\begin{itemize}
+    \item Linear Algebra, Differential Equations, Computational methods
+    \item Dynamical systems, Stability (concept build on top of Theory of Ordinary Differential Equations).
+    % \item Linear dynamical systems (a deep look into one of the most useful and reach in scientific results areas of dynamical systems theory)
+    
+    \item Simulation of dynamical systems (closely related to computational methods in Differential Equations), as a programming problem.
+    \item Development of experiments in Google Colab, using Python, mathematical libraries, solving concrete, real world-related math-oriented problems.
+    
+    \item Representation (parametrization) of equations as a tool in both mathematical analysis and simulation, software development and problem solving.
+    
+    \item ...and many other things.
+\end{itemize}
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{...so, why Control?}
+% \framesubtitle{Part 1}
+\begin{flushleft}
+
+Control Theory, as given here, is focused on:
+
+\begin{enumerate}
+    \item Giving you challenge to simultaneously learn a new concepts, new general and subject-specific math, and new programming tools.
+    \item Providing you with clear outcomes in terms of \emph{understanding} and ability to \emph{solve well-defined and meaningful real-world problems}.
+    \item Being very useful for those who will proceed to work in robotics, automation, self-driving vehicles, drones, etc.
+\end{enumerate}
+
+See it as a test case for your abilities as a CS specialist.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Enough for the motivation}
+% \framesubtitle{Part 1}
+\begin{flushleft}
+
+
+\begin{exampleblock}{Now that we know (kinda) why we do it:}
+
+\hfill \break
+Let's start with the content of the course!
+\newline
+
+\end{exampleblock}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Ordinary differential equations}
+\framesubtitle{1st order}
+\begin{flushleft}
+
+Let us remember the normal form of first-order \emph{ordinary differential equations (ODEs):}
+
+\begin{equation}
+    \dot{\bo{x}} = \bo{f} (\bo{x}, t)
+\end{equation}
+
+where $\bo{x} = \bo{x}(t)$ is the solution of the equation and $t$ is a free variable.
+
+\bigskip
+
+\begin{definition}
+We can call this equation (same as any other ODE) a \emph{dynamical system}, and $\bo{x}$ is called the \emph{state} of the dynamical system.  
+\end{definition}
+
+\begin{example}
+\begin{equation}
+    \dot{x} = -3 x^3 - 7 
+\end{equation}
+\end{example}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Ordinary differential equations}
+\framesubtitle{n-th order}
+\begin{flushleft}
+
+The normal form of an \emph{n-th order} ordinary differential equation is:
+
+\begin{equation}
+    \bo{x}^{(n)} = \bo{f} (\bo{x}^{(n-1)}, \bo{x}^{(n-2)}, ..., \ddot{\bo{x}}, \dot{\bo{x}}, \bo{x}, t)
+\end{equation}
+
+where $\bo{x} = \bo{x}(t)$ is the solution of the equation. Same as before, it is a \emph{dynamical system}, but this time the set $\{ \bo{x}, \ \dot{\bo{x}} \ ..., \ \bo{x}^{(n-1)} \}$ is called the \emph{state} of the dynamical system.
+
+\begin{example}
+\begin{equation}
+    \ddot{x} = cos(2\dot{\bo{x}}) - 10 x + 7 
+\end{equation}
+\end{example}
+
+
+\begin{example}
+\begin{equation}
+\begin{cases}
+    \dddot{x}_1 = \dot{x}_1 + x_1 + x_2^2 - 4 \\
+    \dddot{x}_2 = 10 x_1^3 + \ddot{x}_2
+\end{cases}
+\end{equation}
+\end{example}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Linear differential equations}
+\framesubtitle{1st order}
+\begin{flushleft}
+
+Linear ODEs of the first order have normal form:
+
+\begin{equation}
+    \dot{\bo{x}} = \bo{A} \bo{x} + \bo{b}
+\end{equation}
+
+\begin{example}
+\begin{equation}
+\begin{cases}
+    \dot{x}_1 = -20 x_1 + 7 x_2 + 17 \\
+    \dot{x}_2 = 10.5 x_1 - 3 x_2 - 5
+\end{cases}
+\end{equation}
+\end{example}
+
+\begin{example}
+\begin{equation}
+\begin{bmatrix}
+\dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+-8   & 5   & 2  \\
+ 0.5 & -10 & -2 \\
+ 1   & -1 & -20
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix} 
++
+\begin{bmatrix}
+4  \\
+10 \\
+-5
+\end{bmatrix} 
+\end{equation}
+\end{example}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Linear differential equations}
+\framesubtitle{n-th order}
+\begin{flushleft}
+
+A single linear ODE of the n-th order are often written in the form:
+
+\begin{equation}
+    a_n x^{(n)} + a_{(n-1)} x^{(n-1)} + 
+    ... +
+    a_2 \ddot{x} + a_1 \dot{x} + 
+    a_0 x = b
+\end{equation}
+
+\begin{example}
+\begin{equation}
+12 \dddot{x} -
+    3 \ddot{x} + 5.5 \dot{x} + 
+    2 x = 10.5
+\end{equation}
+\end{example}
+
+\begin{example}
+\begin{equation}
+    5 \ddot{x} - 2 \dot{x} + 
+    10 x = 2
+\end{equation}
+\end{example}
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Linear differential equations}
+\framesubtitle{...are what we will study}
+\begin{flushleft}
+
+In this course we will focus entirely on linear dynamical systems. In particular, we will take a good use of the following two forms:
+
+\begin{equation}
+    a_n x^{(n)} + a_{(n-1)} x^{(n-1)} + 
+    ... +
+    a_2 \ddot{x} + a_1 \dot{x} + 
+    a_0 x = b
+\end{equation}
+
+\begin{equation}
+    \dot{\bo{x}} = \bo{A} \bo{x} + \bo{b}
+\end{equation}
+
+the last one is called \emph{state-space representation}.
+
+\begin{exampleblock}{Good news:}
+
+\hfill \break
+Both of those can be used to express any linear system, hence we can change one into the other.
+\newline
+
+\end{exampleblock}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Changing n-th order ODE to a State-Space form}
+% \framesubtitle{...are what we will study}
+\begin{flushleft}
+
+Consider eq. $\dddot{x} + a_2 \ddot{x} + a_1 \dot{x} + a_0 x = b$.
+
+\bigskip
+
+Make a substitution: $z_1 = x$, $z_2 = \dot{x}$, $z_3 = \ddot{x}$. Therefor:
+
+\begin{equation}
+    \begin{cases}
+        \dot{z}_1 = \dot{x} = z_2 \\
+        \dot{z}_2 = \ddot{x} = z_3 \\
+        \dot{z}_3 =  -a_2 \ddot{x} - a_1 \dot{x} - a_0 x + b = 
+        -a_2 z_3 - a_1 z_2 - a_0 z_1 + b
+    \end{cases}
+\end{equation}
+
+Which can be directly put in the state-space form:
+
+\begin{equation}
+\begin{bmatrix}
+\dot{z}_1 \\ \dot{z}_2 \\ \dot{z}_3
+\end{bmatrix} 
+=
+\begin{bmatrix}
+0 & 1 & 0 \\ 
+0 & 0 & 1 \\
+-a_0 & -a_1 & -a_2
+\end{bmatrix} 
+\begin{bmatrix}
+z_1 \\ z_2 \\ z_3
+\end{bmatrix} 
++ 
+\begin{bmatrix}
+0 \\ 0 \\ b
+\end{bmatrix}
+\end{equation}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Read more}
+
+\begin{itemize}
+\item State Space Representations of Linear Physical Systems \href{https://lpsa.swarthmore.edu/Representations/SysRepSS.html}{lpsa.swarthmore.edu/Representations/SysRepSS.html}
+
+\item Transformation: Differential Equation to State Space \href{https://lpsa.swarthmore.edu/Representations/SysRepTransformations/DE2SS.html}{lpsa.swarthmore.edu/.../DE2SS.html}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}
