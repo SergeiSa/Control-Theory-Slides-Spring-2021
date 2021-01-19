@@ -26,6 +26,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/Introduction/
 
+      - name: Compile LaTeX document Stability
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Stability/
+
 
 
 
@@ -35,7 +41,13 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: Introduction.pdf
-          path: Slides/Introduction/main.pdf 
+          path: Slides/Introduction/main.pdf
+          
+      - name: Save Stability artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Stability.pdf
+          path: Slides/Stability/main.pdf 
           
           
           
@@ -47,6 +59,7 @@ jobs:
           git config --global user.name 'CI PDF compiler'
           git config --global user.email '<>'
           git add Slides/Introduction/main.pdf
+          git add Slides/Stability/main.pdf
           
           
           
