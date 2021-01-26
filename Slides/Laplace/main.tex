@@ -1,0 +1,278 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Stability}
+\subtitle{ Laplace Transform and Transfer Functions, Lecture 2}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+
+\begin{itemize}
+% \item Motivation
+% \item Ordinary differential equations
+%     \begin{itemize}
+%     \item 1st order
+%     \item n-th order
+%     \end{itemize}
+% \item Linear differential equations
+%     \begin{itemize}
+%     \item 1st order
+%     \item n-th order
+%     \item ...are what we will study
+%     \end{itemize}
+% \item Changing n-th order ODE to a State-Space form
+\item Read more
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Laplace Transform}
+% \framesubtitle{O}
+\begin{flushleft}
+
+By definition, Laplace transform of a function $f(t)$ is given as:
+
+\begin{equation}
+    F(s) = \int_0^\infty f(t) e^{-st}dt
+\end{equation}
+
+where $F(s)$ is called an \emph{image} of the function.
+
+\bigskip
+
+The study of Laplace transform is a separate mathematical field with applications in solving ODEs, which we won't cover. However, we will consider transform of one case of interest - transform of a derivative. 
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Laplace Transform of a derivative}
+% \framesubtitle{O}
+\begin{flushleft}
+
+Consider a derivative $\frac{dx}{dt}$ and its transform:
+
+\begin{equation}
+    \mathcal{L}\left(\frac{dx}{dt}\right) = \int_0^\infty \frac{dx}{dt} e^{-st}dt
+\end{equation}
+
+we will make use of the integration by parts formula:
+
+\begin{definition}
+\begin{equation}
+\int v \frac{du}{dt} dt = vu - 
+\int \frac{dv}{dt} u dt    
+\end{equation}
+\end{definition}
+
+In our case, $\frac{du}{dt} = \frac{dx}{dt}$, $u = x$, $v = e^{-st}$, $\frac{dv}{dt} = -se^{-st}$:
+
+\begin{equation}
+\mathcal{L}\left(\frac{dx}{dt}\right) = \left[x e^{-st} \right]_0^\infty - 
+\int_0^\infty -se^{-st} x dt  
+\end{equation}
+
+\begin{equation}
+\mathcal{L}\left(\frac{dx}{dt}\right) = x(0) + s\mathcal{L}(x)  
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Derivative operator}
+% \framesubtitle{O}
+\begin{flushleft}
+
+Thus, assuming that $x(0) = 0$, we can obtain a \emph{derivative operator}:
+
+\begin{equation}
+\label{eq:NoIC_laplace}
+\mathcal{L}\left(\frac{dx}{dt}\right) = s \mathcal{L}\left(x\right)
+\end{equation}
+
+\bigskip
+
+Please notice that \eqref{eq:NoIC_laplace} is only true when $x(0) = 0$; it generally does not look very elegant either. Introducing a big-time abuse of notation, we can denote $x(s) = \mathcal{L}\left(x\right)$ and then drop the brackets, leaving us with:
+
+\begin{equation}
+\frac{dx}{dt} \longrightarrow s x
+\end{equation}
+
+This form of a derivative operator has a very strange notation in terms of the Laplace transform theory, but is very simple to use in practice.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Transfer Function}
+% \framesubtitle{O}
+\begin{flushleft}
+
+Consider the following ODE, where $u$ is an input (function of time that influences the solution of the ODE):
+
+\begin{equation}
+\ddot x + a \dot x + b x = u
+\end{equation}
+
+We can rewrite it using the derivative operator:
+
+\begin{equation}
+s^2 x + a s x + b x = u
+\end{equation}
+
+and then collect $x$ on the left-hand-side:
+
+\begin{equation}
+x = \frac{1}{s^2 + a s + b} u
+\end{equation}
+
+At this point the mathematical meaning of this expression as an ODE is very vague, but it has a different direct use; this form is called a \emph{transfer function}.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Transfer Function}
+\framesubtitle{Example}
+\begin{flushleft}
+
+\begin{example}
+Given ODE: $\dddot 2x + 5\dot x - 40 x = 10 u$
+
+The transfer function for it looks: 
+$x = \frac{10}{2 s^3 + 0 s^2 + 5 s - 40} u$
+\end{example}
+
+
+\begin{example}
+Given ODE: $\dot 2x+ 4 x = u$
+
+The transfer function for it looks: $x = \frac{1}{2 s - 4} u$
+\end{example}
+
+
+\begin{example}
+Given ODE: $\dddot 3x + 4x = u$
+
+The transfer function for it looks: $x = \frac{1}{2 s^3 + 4} u$
+\end{example}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Transfer Function}
+\framesubtitle{Interesting things done easy}
+\begin{flushleft}
+
+Consider the following (strange) ODE:
+
+\begin{equation}
+\ddot 2x + 3\dot x + 2 x = 10 \dot u - u
+\end{equation}
+
+Using the differential equation:
+
+\begin{equation}
+2 s^2 x + 3s x + 2x = 10s u - u
+\end{equation}
+
+...which is the same as:
+
+\begin{equation}
+(2s^2 + 3s + 2)x = (10s - 1)u
+\end{equation}
+
+The transfer function for it looks: 
+
+\begin{equation}
+x = \frac{10s - 1}{2 s^3 + 0 s^2 + 5 s - 40} u
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{State-Space to Transfer Function conversion}
+% \framesubtitle{O}
+\begin{flushleft}
+
+Transfer functions are being used to study the relation between the input and the output of the dynamical system.
+
+\bigskip
+
+Consider standard form state-space dynamical system:
+
+\begin{equation}
+\begin{cases}
+\dot{\bo{x}} = \bo{A}\bo{x} + \bo{B}\bo{u} \\
+     \bo{y}  = \bo{C}\bo{x} + \bo{D}\bo{u}
+\end{cases}
+\end{equation}
+
+We can rewrite it using the derivative operator:
+
+\begin{equation}
+\begin{cases}
+s\bo{I}\bo{x} -\bo{A}\bo{x} = \bo{B}\bo{u} \\
+\bo{y}  = \bo{C}\bo{x} + \bo{D}\bo{u}
+\end{cases}
+\end{equation}
+
+and then collect $\bo{x}$ on the left-hand-side: $\bo{x} = (s\bo{I} -\bo{A})^{-1} \bo{B}\bo{u}$
+
+and finally, express $\bo{y}$ out:
+
+\begin{equation}
+\bo{y}  = \left( \bo{C}(s\bo{I} -\bo{A})^{-1} \bo{B} + \bo{D} \right) \bo{u}
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Read more}
+
+\begin{itemize}
+\item Control Systems Design, by Julio H. Braslavsky \href{http://staff.uz.zgora.pl/wpaszke/materialy/spc/Lec13.pdf}{staff.uz.zgora.pl/wpaszke/materialy/spc/Lec13.pdf}
+
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}
