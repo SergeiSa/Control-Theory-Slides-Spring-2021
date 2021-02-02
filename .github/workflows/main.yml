@@ -32,6 +32,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/Stability/
 
+      - name: Compile LaTeX document Laplace
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Laplace/
+
 
 
 
@@ -48,6 +54,12 @@ jobs:
         with:
           name: Stability.pdf
           path: Slides/Stability/main.pdf 
+		  
+      - name: Save Laplace artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Laplace.pdf
+          path: Slides/Laplace/main.pdf 
           
           
           
@@ -60,6 +72,7 @@ jobs:
           git config --global user.email '<>'
           git add Slides/Introduction/main.pdf
           git add Slides/Stability/main.pdf
+          git add Slides/Laplace/main.pdf
           
           
           

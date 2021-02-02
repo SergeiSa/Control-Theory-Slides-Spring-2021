@@ -18,24 +18,63 @@
 \begin{frame}{Content}
 
 \begin{itemize}
-% \item Motivation
-% \item Ordinary differential equations
-%     \begin{itemize}
-%     \item 1st order
-%     \item n-th order
-%     \end{itemize}
-% \item Linear differential equations
-%     \begin{itemize}
-%     \item 1st order
-%     \item n-th order
-%     \item ...are what we will study
-%     \end{itemize}
-% \item Changing n-th order ODE to a State-Space form
+\item ODE solutions
+\item Laplace Transform
+\item Laplace Transform of a derivative
+\item Derivative operator
+\item Transfer Function
+    \begin{itemize}
+    \item Example
+    \item Interesting things done easy
+    \end{itemize}
+\item State-Space to Transfer Function conversion
 \item Read more
 \end{itemize}
 
 \end{frame}
 
+
+
+
+
+\begin{frame}{ODE solutions}
+% \framesubtitle{O}
+\begin{flushleft}
+
+\begin{equation}
+    \begin{bmatrix}
+    \dot x_1 \\ \dot x_2 \\ \dot x_3
+    \end{bmatrix}
+    \begin{bmatrix}
+    0 & 1 & 0 \\ 0 & 0 & 1 \\ -5 & -10 & -10
+    \end{bmatrix}
+    \begin{bmatrix}
+    x_1 \\ x_2 \\ x_3
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+    0\\ 0 \\ 10
+    \end{bmatrix}
+    u
+\end{equation}
+
+\begin{figure}
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Autonomous.png}
+\caption{Autonomous ODE ($u = 0$)}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{sine.png}
+\caption{reaction to sine wave ($u = sin(t)$)}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{step.png}
+\caption{Reaction to step function ($u = 1$)}
+\endminipage
+\end{figure}
+
+\end{flushleft}
+\end{frame}
 
 
 \begin{frame}{Laplace Transform}
@@ -257,7 +296,7 @@ and finally, express $\bo{y}$ out:
 \begin{frame}{Read more}
 
 \begin{itemize}
-\item Control Systems Design, by Julio H. Braslavsky \href{http://staff.uz.zgora.pl/wpaszke/materialy/spc/Lec13.pdf}{staff.uz.zgora.pl/wpaszke/materialy/spc/Lec13.pdf}
+\item \href{https://www.cds.caltech.edu/~murray/courses/cds101/fa04/caltech/am04_ch6-3nov04.pdf}{Chapter 6 Transfer Functions}
 
 
 \end{itemize}
