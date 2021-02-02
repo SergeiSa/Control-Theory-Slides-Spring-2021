@@ -1,6 +1,8 @@
 # Lecture slides:
 
 * Lecture 1 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Introduction
+* Lecture 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Stability
+* Lecture 3 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Laplace
 
 # Lecture videos
 

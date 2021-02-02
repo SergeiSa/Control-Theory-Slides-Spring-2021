@@ -193,7 +193,7 @@ At this point the mathematical meaning of this expression as an ODE is very vagu
 \begin{flushleft}
 
 \begin{example}
-Given ODE: $\dddot 2x + 5\dot x - 40 x = 10 u$
+Given ODE: $2\dddot x + 5\dot x - 40 x = 10 u$
 
 The transfer function for it looks: 
 $x = \frac{10}{2 s^3 + 0 s^2 + 5 s - 40} u$
@@ -201,16 +201,16 @@ $x = \frac{10}{2 s^3 + 0 s^2 + 5 s - 40} u$
 
 
 \begin{example}
-Given ODE: $\dot 2x+ 4 x = u$
+Given ODE: $2\dot x+ 4 x = u$
 
-The transfer function for it looks: $x = \frac{1}{2 s - 4} u$
+The transfer function for it looks: $x = \frac{1}{2 s + 4} u$
 \end{example}
 
 
 \begin{example}
-Given ODE: $\dddot 3x + 4x = u$
+Given ODE: $3\dddot x + 4x = u$
 
-The transfer function for it looks: $x = \frac{1}{2 s^3 + 4} u$
+The transfer function for it looks: $x = \frac{1}{3 s^3 + 4} u$
 \end{example}
 
 \end{flushleft}
@@ -226,7 +226,7 @@ The transfer function for it looks: $x = \frac{1}{2 s^3 + 4} u$
 Consider the following (strange) ODE:
 
 \begin{equation}
-\ddot 2x + 3\dot x + 2 x = 10 \dot u - u
+2\ddot x + 3\dot x + 2 x = 10 \dot u - u
 \end{equation}
 
 Using the differential equation:
