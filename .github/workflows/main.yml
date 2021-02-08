@@ -38,6 +38,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/Laplace/
 
+      - name: Compile LaTeX document Control
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Control/
+
 
 
 
@@ -60,6 +66,12 @@ jobs:
         with:
           name: Laplace.pdf
           path: Slides/Laplace/main.pdf 
+		  
+      - name: Save Control artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Control.pdf
+          path: Slides/Control/main.pdf 
           
           
           
@@ -73,6 +85,7 @@ jobs:
           git add Slides/Introduction/main.pdf
           git add Slides/Stability/main.pdf
           git add Slides/Laplace/main.pdf
+          git add Slides/Control/main.pdf
           
           
           
