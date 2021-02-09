@@ -1,6 +1,6 @@
 name: Build LaTeX document
 
-on: 
+on:
   push:
   pull_request:
     types:
@@ -54,29 +54,28 @@ jobs:
         with:
           name: Introduction.pdf
           path: Slides/Introduction/main.pdf
-          
+
       - name: Save Stability artifact
         uses: actions/upload-artifact@v1
         with:
           name: Stability.pdf
-          path: Slides/Stability/main.pdf 
-		  
+          path: Slides/Stability/main.pdf
+
       - name: Save Laplace artifact
         uses: actions/upload-artifact@v1
         with:
           name: Laplace.pdf
-          path: Slides/Laplace/main.pdf 
-		  
+          path: Slides/Laplace/main.pdf
+
       - name: Save Control artifact
         uses: actions/upload-artifact@v1
         with:
           name: Control.pdf
-          path: Slides/Control/main.pdf 
-          
-          
-          
-          
-          
+          path: Slides/Control/main.pdf
+
+
+
+
       - name: Update compiled PDFs in git repository
         if: github.event.pull_request.merged == true || github.event_name == 'push'
         run: |
@@ -86,9 +85,6 @@ jobs:
           git add Slides/Stability/main.pdf
           git add Slides/Laplace/main.pdf
           git add Slides/Control/main.pdf
-          
-          
-          
-          
+
           git commit -m "Update compiled PDFs"
           git push
