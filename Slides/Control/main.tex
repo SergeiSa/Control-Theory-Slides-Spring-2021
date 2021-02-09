@@ -104,7 +104,7 @@ and let us chose control as a linear function of the \emph{state} $x$:
     \bo{u} = -\bo{K}\bo{x}
 \end{equation}
 
-Thus, we know how the system is going to look we the control is applied:
+Thus, we know how the system is going to look when the control is applied:
 
 \begin{equation}
     \dot{\bo{x}} = \bo{A}\bo{x} - \bo{B}\bo{K}\bo{x}
@@ -114,7 +114,7 @@ Thus, we know how the system is going to look we the control is applied:
     \dot{\bo{x}} = (\bo{A} - \bo{B}\bo{K})\bo{x}
 \end{equation}
 
-Note that \eqref{eq:closed_loop} is an autonomous system. We call this (a system that was no autonomous, but became one after substituting control law) a \emph{closed loop} system.
+Note that \eqref{eq:closed_loop} is an autonomous system. We call this (a system that was not autonomous, but became one after substituting control law) a \emph{closed loop} system.
 
 \end{flushleft}
 \end{frame}
@@ -128,7 +128,7 @@ Note that \eqref{eq:closed_loop} is an autonomous system. We call this (a system
 Observing the system $\dot{\bo{x}} = (\bo{A} - \bo{B}\bo{K})\bo{x}$ we obtained, we can notice that we already have the tools to analyse its stability. Namely:
 
 \begin{block}{Stability condition for LTI closed-loop system}
-The real parts of the eigenvalues of the matrix $(\bo{A} - \bo{B}\bo{K})$ should negative for asymptotic stability, or non-positive for stability in the sense of Lyapunov
+The real parts of the eigenvalues of the matrix $(\bo{A} - \bo{B}\bo{K})$ should be negative for asymptotic stability, or non-positive for stability in the sense of Lyapunov
 \end{block}
 
 
