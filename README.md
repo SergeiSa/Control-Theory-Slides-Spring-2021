@@ -7,7 +7,8 @@
 
 # Lecture videos
 
-* Lecture 1 -  
+* Lecture 2 - https://youtu.be/x2cYtqJR-qg
+* Lecture 4 - https://youtu.be/geeaciySBHY
 
 # For contributors:
 
