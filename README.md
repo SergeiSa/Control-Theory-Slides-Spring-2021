@@ -1,4 +1,4 @@
-# Lecture slides:
+# Lecture slides
 
 * Lecture 1 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Introduction
 * Lecture 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Stability
@@ -10,11 +10,11 @@
 * Lecture 2 - https://youtu.be/x2cYtqJR-qg
 * Lecture 4 - https://youtu.be/geeaciySBHY
 
-# Self-study with Colab:
+# Self-study with Colab
 
 * Lecture 3: - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice3_transfer_functions.ipynb
 
-# For contributors:
+# For contributors
 
 Pull requests with suggestions and improvements, however small or big, are welcome!
 
@@ -27,7 +27,7 @@ Consider adding \*.pdf to the .git/info/exclude file on your local repo. Here is
 # Book suggestions
 
 
-## Lecture 1. Lecture 1. Introduction, SISO, ODE.
+## Lecture 1. State-Space, ODE
 
 * Control Systems Engineering Norman S. Nise 
   * Chapter 3.3: The General State-Space Representation 
