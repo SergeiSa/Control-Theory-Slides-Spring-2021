@@ -12,7 +12,9 @@
 
 # Self-study with Colab
 
-* Lecture 3: - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice3_transfer_functions.ipynb
+* Lecture 1 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice1_StateSpace_transformation_simulation.ipynb
+* Lecture 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice2_LTI_Stability.ipynb
+* Lecture 3 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice3_transfer_functions.ipynb
 
 # For contributors
 
