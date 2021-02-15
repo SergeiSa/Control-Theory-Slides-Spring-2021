@@ -1,0 +1,310 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Discrete Dynamics}
+\subtitle{Control Theory, Lecture 5}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+
+\begin{itemize}
+\item Discrete Dynamics
+\item Stability of the Discrete Dynamics
+\item Discretization
+\begin{itemize}
+    \item Finite difference
+    \item Finite difference in an autonomous LTI
+\end{itemize}
+\item Zero order hold
+\item ZOH and other types of discretization
+\begin{itemize}
+    \item Zero order hold vs First order hold
+    \item Exact discretization
+\end{itemize}
+\item Read more
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{Discrete Dynamics}
+% \framesubtitle{Part 1}
+\begin{flushleft}
+
+The following dynamical system is called \emph{discrete}:
+
+\begin{equation}
+    \bo{x}_{i+1} = \bo{A}\bo{x}_i + \bo{B}\bo{u}_i
+\end{equation}
+
+Note that those:
+
+\begin{itemize}
+    \item have no derivatives in the equation;
+    \item are easily simulated.
+\end{itemize}
+
+\bigskip
+
+The affine control for this system can be given as:
+
+\begin{equation}
+    \bo{u}_i = -\bo{K}\bo{x}_i + \bo{u}_i^*
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Stability of the Discrete Dynamics}
+\framesubtitle{Part 1}
+\begin{flushleft}
+
+Let us consider stability of the discrete dynamical system $\bo{x}_{i+1} = \bo{A}\bo{x}_i$.
+
+\bigskip
+
+We will attack the problem in the same way as before, first assuming that $\bo{A} = \bo{V}^{-1} \bo{D} \bo{V}$, where $\bo{D}$ is a diagonal matrix with eigenvalues of $\bo{A}$ on its diagonal:
+
+\begin{equation}
+    \bo{x}_{i+1} = \bo{V}^{-1} \bo{D} \bo{V}\bo{x}_i
+\end{equation}
+
+Multiplying both sides of the equation by $\bo{V}$ and defining $\bo{z}_i = \bo{V}\bo{x}_i$, we get:
+
+\begin{equation}
+    \bo{V}\bo{x}_{i+1} = \bo{V}\bo{V}^{-1} \bo{D} \bo{V}\bo{x}_i
+\end{equation}
+\begin{equation}
+    \bo{z}_{i+1} = \bo{D} \bo{z}_i
+\end{equation}
+
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Stability of the Discrete Dynamics}
+\framesubtitle{Part 2}
+\begin{flushleft}
+
+Now, considering $\bo{z}_{i+1} = \bo{D} \bo{z}_i$ we can see that the norm of the state $\bo{z}_i$ would not increase iff the norm of the elements of $\bo{D}$ (which as eigenvalues of $\bo{A}$) are smaller than 1.
+
+\bigskip
+
+\begin{block}{Stability criterion}
+In general, discrete systems $\bo{x}_{i+1} = \bo{A}\bo{x}_i$ are stable as long as the eigenvalues of $\bo{A}$ are smaller than 1 by absolute value: $|\lambda_i(\bo{A})| \leq 1, \; \forall i$. This is true for complex eigenvalues as well.
+\end{block}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Discretization}
+\framesubtitle{Finite difference}
+\begin{flushleft}
+
+Consider linear time-invariant autonomous system:
+
+\begin{equation}
+    \dot {\bo{x}} = \bo{A} \bo{x}
+\end{equation}
+
+
+The time derivative $\dot {\bo{x}}$ can be replaces with a finite difference:
+
+\begin{equation}
+\dot {\bo{x}} \approx \frac{1}{\Delta t}(\bo{x}(t + \Delta t) - \bo{x}(t))
+\end{equation}
+
+Note that we could have also used other definitions of a finite difference:
+
+\begin{equation}
+\dot {\bo{x}} \approx \frac{1}{\Delta t}(\bo{x}(t + 0.5\Delta t) - \bo{x}(t - 0.5\Delta t))
+\end{equation}
+
+or
+
+\begin{equation}
+\dot {\bo{x}} \approx \frac{1}{\Delta t}(\bo{x}(t) - \bo{x}(t - \Delta t))
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Discretization}
+\framesubtitle{Finite difference notation}
+\begin{flushleft}
+We can introduce notation:
+
+\begin{equation}
+\begin{cases}
+\bo{x}_0 = \bo{x}(0) \\
+\bo{x}_1 = \bo{x}(\Delta t) \\
+\bo{x}_2 = \bo{x}(2\Delta t) \\
+... \\
+\bo{x}_n = \bo{x}(n\Delta t) 
+\end{cases}
+\end{equation}
+
+We say that $\bo{x}_i$ is the value of $\bo{x}$ at the time step $i$. Then the finite difference can be written, for example, as follows:
+
+\begin{equation}
+\dot {\bo{x}} \approx \frac{1}{\Delta t}(\bo{x}_{i+1} - \bo{x}_i)
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Discretization}
+\framesubtitle{Finite difference in an autonomous LTI}
+\begin{flushleft}
+
+We can rewrite our original autonomous LTI as follows:
+
+\begin{equation}
+\frac{1}{\Delta t}(\bo{x}_{i + 1} - \bo{x}_i) = \bo{A} \bo{x}_i
+\end{equation}
+Isolating $\bo{x}_{i + 1}$ on the left hand side, we get:
+\begin{equation}
+\bo{x}_{i + 1} = (\bo{A} \Delta t + \bo{I}) \bo{x}_i
+\end{equation}
+
+\noindent\rule{11cm}{0.4pt}
+
+Or alternatively:
+
+\begin{equation}
+\frac{1}{\Delta t}(\bo{x}_{i + 1} - \bo{x}_i) = \bo{A} \bo{x}_{i + 1}
+\end{equation}
+Isolating $\bo{x}_{i + 1}$ on the left hand side, we get:
+\begin{equation}
+\bo{x}_{i + 1} = (\bo{I} - \bo{A} \Delta t)^{-1} \bo{x}_i 
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Discretization}
+\framesubtitle{Zero order hold}
+\begin{flushleft}
+
+Defining \emph{discrete state space matrix} $\bar{\bo{A}}$ and \emph{discrete control matrix} $\bar{\bo{B}}$ as follows:
+
+\begin{equation}
+\bar{\bo{A}} = \bo{A} \Delta t + \bo{I}
+\end{equation}
+\begin{equation}
+\bar{\bo{B}} = \bo{B} \Delta t
+\end{equation}
+%
+We get discrete dynamics:
+
+\begin{equation}
+\bo{x}_{i+1} = \bar{\bo{A}} \bo{x}_i + \bar{\bo{B}} \mathbf u_i
+\end{equation}
+
+This way of defining discrete dynamics is called \emph{zero order hold (ZOH)}.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{ZOH and other types of discretization}
+\framesubtitle{Zero order hold vs First order hold}
+\begin{flushleft}
+
+Graphically, we can understand what zero order hold is, by comparing it to the first order hold:
+
+\begin{figure} [h!]
+\begin{center}
+\includegraphics[width=3.5in]{ZOH.PNG}
+\end{center} 
+\caption{Different types of discretization} \label{F:ZOH}
+\end{figure}
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{ZOH and other types of discretization}
+\framesubtitle{Exact discretization}
+\begin{flushleft}
+
+Let the discrete state $\bo{x}_i$ correspond to continuous state $\bo{x}$ at the moment of time $t_i$. Then, we can say that the discretization is \emph{exact} the following holds for any solution $\bo{x}(t)$
+
+\begin{equation}
+\bo{x}_0 = \bo{x}(t_0) \rightarrow 
+\bo{x}_i = \bo{x}(t_i), \ \forall i
+\end{equation}
+
+We can compute the exact discretization as follows:
+
+\begin{equation}
+\bar{\bo{A}} = e^{\bo{A} \Delta t}
+\end{equation}
+\begin{equation}
+\bar{\bo{B}} = \bo{B} \int_{t_0}^{t_0 + \Delta t} e^{\bo{A} s} ds
+\end{equation}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Read more}
+
+\begin{itemize}
+\item  \href{http://cse.lab.imtlucca.it/~bemporad/teaching/ac/pdf/04a-TD_sys.pdf}{Automatic Control 1 Discrete-time linear systems}, Prof. Alberto Bemporad, University of Trento
+
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}

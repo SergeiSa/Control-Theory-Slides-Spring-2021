@@ -44,6 +44,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/Control/
 
+      - name: Compile LaTeX document Discrete
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Discrete/
+
 
 
 
@@ -75,6 +81,12 @@ jobs:
           name: Control.pdf
           path: Slides/Control/main.pdf
 
+      - name: Save Discrete artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Discrete.pdf
+          path: Slides/Discrete/main.pdf
+
 
       - name: Update compiled PDFs in git repository
         if: github.event.pull_request.merged == true || github.event_name == 'push'
@@ -85,6 +97,7 @@ jobs:
           git add Slides/Stability/main.pdf
           git add Slides/Laplace/main.pdf
           git add Slides/Control/main.pdf
+          git add Slides/Discrete/main.pdf
 
 
 
