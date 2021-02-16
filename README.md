@@ -4,6 +4,7 @@
 * Lecture 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Stability
 * Lecture 3 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Laplace
 * Lecture 4, 5 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Control
+* Lecture 6 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Discrete
 
 # Lecture videos
 
