@@ -10,6 +10,7 @@
 
 * Lecture 2 - https://youtu.be/x2cYtqJR-qg
 * Lecture 4 - https://youtu.be/geeaciySBHY
+* Lecture 5 - https://youtu.be/c9yNjq2vtpw
 
 # Self-study with Colab
 
