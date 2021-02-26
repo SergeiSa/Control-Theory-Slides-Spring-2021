@@ -4,12 +4,15 @@
 * Lecture 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Stability
 * Lecture 3 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Laplace
 * Lecture 4, 5 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Control
-* Lecture 6 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Discrete
+* Lecture 5 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Discrete
 
-# Lecture videos
+# Lecture videos 
+
+([playlist](https://www.youtube.com/watch?v=x2cYtqJR-qg&list=PLlxR_sEKjSpTyteBJYJR6WBuAlPineEwz))
 
 * Lecture 2 - https://youtu.be/x2cYtqJR-qg
 * Lecture 4 - https://youtu.be/geeaciySBHY
+* Lecture 5 - https://youtu.be/c9yNjq2vtpw
 
 # Self-study with Colab
 
