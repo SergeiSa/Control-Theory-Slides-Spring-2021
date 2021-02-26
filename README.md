@@ -14,6 +14,10 @@
 * Lecture 4 - https://youtu.be/geeaciySBHY
 * Lecture 5 - https://youtu.be/c9yNjq2vtpw
 
+# Labs
+
+* Assignment / lab / submission / gradable item \# 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/Lab2_Control2021.pdf
+
 # Self-study with Colab
 
 * Lecture 1 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice1_StateSpace_transformation_simulation.ipynb
