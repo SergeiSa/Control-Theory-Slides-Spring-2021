@@ -50,6 +50,18 @@ jobs:
           root_file: main.tex
           working_directory: Slides/Discrete/
 
+      - name: Compile LaTeX document NullRow
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/NullRow/
+
+      - name: Compile LaTeX document ColumnLeftNull
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/ColumnLeftNull/
+
 
 
 
@@ -87,6 +99,18 @@ jobs:
           name: Discrete.pdf
           path: Slides/Discrete/main.pdf
 
+      - name: Save NullRow artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: NullRow.pdf
+          path: Slides/NullRow/main.pdf
+
+      - name: Save ColumnLeftNull artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ColumnLeftNull.pdf
+          path: Slides/ColumnLeftNull/main.pdf
+
 
       - name: Update compiled PDFs in git repository
         if: github.event.pull_request.merged == true || github.event_name == 'push'
@@ -98,6 +122,8 @@ jobs:
           git add Slides/Laplace/main.pdf
           git add Slides/Control/main.pdf
           git add Slides/Discrete/main.pdf
+          git add Slides/NullRow/main.pdf
+          git add Slides/ColumnLeftNull/main.pdf
 
 
 

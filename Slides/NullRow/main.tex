@@ -1,0 +1,370 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Null space, Row space, Projectors}
+\subtitle{Control Theory, Lecture 7}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+
+\begin{itemize}
+\item Motivating questions
+\item Four Fundamental Subspaces
+\item Null space
+\begin{itemize}
+    \item Definition
+    \item Calculation
+\end{itemize}
+\item Null space projection
+\item Closest element from a linear subspace
+\item Orthogonality, definition
+\item Projection
+\item Vectors in Null space, Row space
+\item Row and Null spaces in linear equations
+% \item Read more
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Motivating questions}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+You have a linear operator $\mathbf A$. Try to answer the following questions:
+
+\begin{itemize}
+    \item What are all vectors this operator can produce as outputs? How to find them?
+    \item Are there two inputs that make it produce the same output?
+    \item Are there inputs that produce zero as an output?
+    \item Are there outputs that cannot be produced? 
+    \item What is the smallest vector $\bo{x}$ that produces given output $\bo{y}$? 
+\end{itemize}
+
+These questions are directly related to the idea of fundamental subspaces of a linear operator.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Four Fundamental Subspaces}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+One of the key ideas in the linear algebra is that every linear operator has four fundamental subspaces:
+
+\begin{itemize}
+    \item Null space
+    \item Row space
+    \item Column space
+    \item Left null space
+\end{itemize}
+
+\bigskip
+
+Our goal is to understand them. The usefulness of this understating is enormous.
+
+\end{flushleft}
+\end{frame}
+
+\begin{frame}{Null space}
+\framesubtitle{Definition}
+\begin{flushleft}
+
+Consider the following task: find all solutions to the system of equations $\mathbf{A} \mathbf{x} = \mathbf{0}$.
+
+\bigskip
+
+It can be re-formulated as follows: find all elements of the \emph{null space} of $\mathbf{A}$.
+
+\begin{block}{Definition 1}
+  \emph{Null space} of $\mathbf{A}$ is the set of all vectors $\mathbf{x}$ that $\mathbf{A}$ maps to $\mathbf{0}$
+\end{block}
+
+\bigskip
+
+We will denote null space as $\mathcal{N}(\mathbf{A})$. In the literature, it is often denoted as $\text{ker}(\mathbf{A})$ or $\text{null}(\mathbf{A})$.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Null space}
+\framesubtitle{Calculation}
+\begin{flushleft}
+
+Now we can find all solutions to the system of equations $\mathbf{A} \mathbf{x} = \mathbf{0}$ by using functions that generate an orthonormal \emph{basis} in the null space of $\mathbf{A}$. In MATLAB it is function \texttt{null}, in Python/Scipy - \texttt{null\_space}:
+
+\bigskip
+
+\begin{itemize}
+    \item \texttt{N = null(A)}.
+    \item \texttt{N = scipy.linalg.null\_space(A)}.
+\end{itemize}
+
+\bigskip
+
+That is it! Space of solutions of $\mathbf{A} \mathbf{x} = \mathbf{0}$ is the span of the columns of $\mathbf{N}$, and all solutions $\mathbf{x}^*$ can be represented as $\mathbf{x}^* = \mathbf{N}\mathbf{z}$; for any $\mathbf{z}$ we get a unique solution, and for any solution - a unique $\mathbf{z}$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Null space projection}
+\framesubtitle{Local coordinates}
+\begin{flushleft}
+
+Let $\bo{N}$ be the orthonormal basis in the null space of matrix $\bo{A}$. Then, if a vector $\bo{x}$ lies in the null space of $\bo{A}$, it can be represented as:
+
+\begin{equation}
+    \bo{x} = \bo{N}\bo{z}
+\end{equation}
+%
+where $\bo{z}$ are coordinates of $\bo{x}$ in the basis $\bo{N}$.
+
+\bigskip
+
+However, there are vector which not only are not lying in the null space of $\bo{A}$,  but the closest vector to them in the null space is zero vector.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Closest element from a linear subspace}
+% \framesubtitle{Orthogonality, examples}
+\begin{flushleft}
+
+Let $\bo{A} = \begin{bmatrix} 0 & 1 \\ 0 & 0\end{bmatrix}$. Its null space has orthonormal basis $\bo{N} = \begin{bmatrix} 1 \\ 0\end{bmatrix}$. 
+
+\begin{itemize}
+    \item $\begin{bmatrix} -2 \\ 0 \end{bmatrix} = 
+    -2 \bo{N}$,
+    $\begin{bmatrix} 10 \\ 0 \end{bmatrix} = 
+    10 \bo{N}$, - both are in the null space.
+    \item for $\bo{x} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ the closest vector in the null space is $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
+    \item for $\bo{y} = \begin{bmatrix} 0 \\ 2 \end{bmatrix}$ the closest vector in the null space is $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$.
+\end{itemize}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Orthogonality, definition}
+% \framesubtitle{Orthogonality, definition}
+\begin{flushleft}
+
+\begin{definition}
+If for a vector $\bo{x}$, the closest vector to it from a linear subspace $\mathcal{L}$ is zero vector, $\bo{x}$ is called \emph{orthogonal} to the subspace $\mathcal{L}$. We denote it as $\bo{x} \in \mathcal{L}^\perp$.
+\end{definition}
+
+
+\begin{definition}
+The space of all vectors $\bo{x}$, for which closest vector to them from a linear subspace $\mathcal{L}$ is zero vector, is called \emph{subspace, orthogonal to} $\mathcal{L}$ and is denoted as $\mathcal{L}^\perp$.
+\end{definition}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Projection}
+\framesubtitle{Part 1}
+\begin{flushleft}
+
+Let $\bo{L}$ be an orthonormal basis in a linear subspace $\mathcal{L}$. Take vector $\bo{a} = \bo{x} + \bo{y}$, where $\bo{x}$ lies in the subspace $\mathcal{L}$, and $\bo{y}$ is orthogonal to $\mathcal{L}$.
+
+\bigskip
+
+\begin{definition}
+We call such vector $\bo{x}$ a \emph{projection} of $\bo{a}$ onto subspace $\mathcal{L}$, and such vector $\bo{y}$ a projection of $\bo{a}$ onto subspace $\mathcal{L}^\perp$
+\end{definition}
+
+\bigskip
+
+Projection of $\bo{a}$ onto $\mathcal{L}$ can be found as: 
+
+\begin{equation}
+    \bo{x} = \bo{L} \bo{L}^+ \bo{a}
+\end{equation}
+
+Since $\bo{L}$ is orthonormal, this is the same as $\bo{x} = \bo{L} \bo{L}^\top \bo{a}$
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Projection}
+\framesubtitle{Part 2}
+\begin{flushleft}
+
+Since $\bo{a} = \bo{x} + \bo{y}$, and $\bo{x} = \bo{L} \bo{L}^+ \bo{a}$, we can write:
+
+\begin{equation}
+    \bo{a} = \bo{L} \bo{L}^+ \bo{a} + \bo{y}
+\end{equation}
+%
+from which it follows that the projection of $\bo{a}$ onto $\mathcal{L}^\perp$ can be found as: 
+
+\begin{equation}
+    \bo{y} = (\bo{I} - \bo{L} \bo{L}^+) \bo{a}
+\end{equation}
+%
+where $\bo{I}$ is an identity matrix. Since $\bo{L}$ is orthonormal, this is the same as $\bo{y} = (\bo{I} - \bo{L} \bo{L}^\top) \bo{a}$
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Row space}
+\framesubtitle{Definition}
+\begin{flushleft}
+
+\begin{definition}
+Let $\mathcal{N}$ be null space of $\bo{A}$. Then orthogonal subspace $\mathcal{N}^\perp$ is called \emph{row space} of $\bo{A}$.
+\end{definition}
+
+\begin{definition}
+\emph{Row space} of $\bo{A}$ is the space of all inputs to $\bo{A}$ that produce non-zero outputs (plus zero vector, which is included in all linear subspaces).
+\end{definition}
+
+\bigskip
+
+We will denote row space as $\mathcal{R}$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Vectors in Null space, Row space}
+% \framesubtitle{Definition}
+\begin{flushleft}
+
+Given vector $\bo{x}$, matrix $\bo{A}$ and its nulls space basis $\bo{N}$, and we check if $\bo{x}$ is in the null space of $\bo{A}$. 
+
+\bigskip
+
+We do it by noticing that if it is in the null space of $\bo{A}$, it will have zero projection onto the row space of $\bo{A}$. So, the condition is as follows:
+
+\begin{equation}
+    (\bo{I} - \bo{N} \bo{N}^+) \bo{x} = 0
+\end{equation}
+
+By the same logic, condition for being in the row space is as follows:
+
+\begin{equation}
+    \bo{N} \bo{N}^+ \bo{x} = 0
+\end{equation}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{Row and Null spaces in linear equations}
+\framesubtitle{Part 1}
+\begin{flushleft}
+
+Consider another task: find all solutions to the system of equations $\bo{A} \bo{x} = \bo{y}$.
+
+\bigskip
+
+Assume we have two solutions to the system: $\bo{x}_1$ and $\bo{x}_2$. We know that $\bo{A} \bo{x}_1 = \bo{A} \bo{x}_2= \bo{y}$, hence $\bo{A} (\bo{x}_1 - \bo{x}_2) = \bo{0}$. In other words, the difference between any two solutions lies in the null space of $\bo{A}$.
+
+\bigskip
+
+On the other hand, let $\bo{x}^*$ be a solution, and $\bo{x}^N \in \mathcal{N}(\bo{A})$ be a vector in the null space of $\bo{A}$. Then $\bo{x}^* + \bo{x}^N$ is also a solution, since $\bo{A} (\bo{x}^* + \bo{x}^N) = \bo{A} \bo{x}^* + \bo{A} \bo{x}^N = \bo{A} \bo{x}^* = \bo{y}$.
+
+\bigskip
+
+Therefore, the solution space is given by a single partial solution $\bo{x}^p \notin \mathcal{N}(\bo{A})$ and the whole null space of $\bo{A}$.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Row and Null spaces in linear equations}
+\framesubtitle{Part 2}
+\begin{flushleft}
+
+There are infinitely many ways to chose $\bo{x}^p$, since if $\bo{x}^p \notin \mathcal{N}(\bo{A})$, then $(\bo{x}^p + \bo{x}^N) \notin \mathcal{N}(\bo{A})$, if $\bo{x}^N \in \mathcal{N}(\bo{A})$. However: 
+
+\begin{block}{Statement 1}
+The smallest-norm $\bo{x}^p$ will lie in the row space of $\bo{A}$.
+\end{block}
+
+\bigskip
+
+We can prove it by observing that there can be only one $\bo{x}^p \in \mathcal{R}(\bo{A})$ and adding to it any vector $\bo{x}^N \in \mathcal{N}(\bo{A})$ can only increase its magnitude, as $\bo{x}^p$ and $\bo{x}^N$ are orthogonal.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Row and Null spaces in linear equations}
+\framesubtitle{Part 3}
+\begin{flushleft}
+
+If we have $\bo{x}^*$, which is a solution to $\bo{A} \bo{x} = \bo{y}$, we can find the particular solution $\bo{x}^p \in \mathcal{R}(\bo{A})$ as a projection:
+
+\begin{equation}
+    \bo{x}^p = (\bo{I} - \bo{N} \bo{N}^+) \bo{x}^*
+\end{equation}
+%
+where $\bo{N}$ is the null space basis for $\bo{A}$. Alternatively, we can simply find it as:
+
+\begin{equation}
+    \bo{x}^p = \bo{A}^+ \bo{y}
+\end{equation}
+
+\bigskip
+
+All solutions to $\bo{A} \bo{x} = \bo{y}$ are then given as:
+
+\begin{equation}
+    \bo{x}^* = \bo{A}^+ \bo{y} + \bo{N}\bo{z}, \ \forall \bo{z}
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}

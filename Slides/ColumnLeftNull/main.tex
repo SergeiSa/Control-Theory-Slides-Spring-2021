@@ -1,0 +1,268 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Column space, Left Null space, control applications}
+\subtitle{Control Theory, Lecture 8}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+
+\begin{itemize}
+\item Column space
+\item Column space basis
+\item Column space and null space
+\item Projector onto column space
+\item Left null space
+\item Finding fixed points
+\item Checking fixed points
+\item Correcting fixed points
+\item Finding fixed points for affine systems
+% \item Read more
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{Column space}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+Consider the following task: find all vectors $\bo{y}$ such that $\bo{y} = \bo{A} \bo{x}$.
+
+\bigskip
+
+It can be re-formulated as follows: find all elements of the \emph{column space} of $\bo{A}$.
+
+\begin{block}{Definition 1}
+  \emph{Column space} of $\bo{A}$ is the set of all outputs of the matrix $\bo{A}$, for all possible inputs
+\end{block}
+
+\bigskip
+
+We will denote column space as $\mathcal{C}(\bo{A})$. In the literature, it is often called an \emph{image} of $\bo{A}$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Column space basis}
+% \framesubtitle{Example}
+\begin{flushleft}
+
+The problem of finding orthonormal basis in the column space of a matrix is often called \emph{orthonormalization} of that matrix. Hence in MATLAB and Python/Scipy the function that does it is called \texttt{orth}:
+
+\bigskip
+
+\begin{itemize}
+    \item \texttt{C = orth(A)}.
+    \item \texttt{C = scipy.linalg.orth(A)}.
+\end{itemize}
+
+\bigskip
+
+That is how one finds all the outputs of the matrix $\bo{A}$: as $\{ \bo{C}\bo{z}: \ \forall \bo{z} \}$. 
+
+Notice that $\{ \bo{A}\bo{x}: \ \forall \bo{x} \}$ might contain repeated entries if $\bo{A}$ has a non-trivial null space.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Column space and null space}
+% \framesubtitle{Local coordinates}
+\begin{flushleft}
+
+Let $\bo{A}$ be a square matrix, a map from $\mathbb{X} = \R^n$ to $\mathbb{Y} = \R^n$. Notice that if it has a non-trivial null space, it follows that multiple unique inputs are being mapped by it to the same output:
+
+\begin{equation}
+  \begin{aligned}
+    \bo{y} = \bo{A} \bo{x}_r = \bo{A} (\bo{x}_r + \bo{x}_n), \\
+    \bo{x}_r \in \mathcal{R}(\bo{A}) \\
+    \forall \bo{x}_n \in \mathcal{N}(\bo{A}) \\
+  \end{aligned}
+\end{equation}
+
+In fact, if null space of $\bo{A}$ has $k$ dimensions, it implies that an $n$-dimentional subspace of $\mathbb{X}$ is mapped to a single element of $\mathbb{Y}$. 
+
+\bigskip
+
+It follows that in this case the dimensionality of the column space could not exceed $n-k$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Projector onto column space}
+% \framesubtitle{Local coordinates}
+\begin{flushleft}
+
+Given vector $\bo{y}$ and matrix $\bo{A}$, let us find projector of $\bo{y}$ onto the column space of $\bo{A}$.
+
+\bigskip
+
+This is done in the same manner as we did with the null space:
+
+\begin{equation}
+    \bo{y}_c = \bo{A}\bo{A}^+ \bo{y} \in \mathcal{C}(\bo{A})
+\end{equation}
+
+This feels nice, as it only requires the matrix itself, no need for the orthonormal basis as before. However, you need to remember that the pseudoinverse is base on SVD decomposition, same as operations of finding a basis in the null space or column space.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Projector onto row space}
+% \framesubtitle{Local coordinates}
+\begin{flushleft}
+
+In the same we can define a projector onto row space. Given vector $\bo{x}$ and matrix $\bo{A}$, let us find projector of $\bo{x}$ onto the row space of $\bo{A}$:
+
+\begin{equation}
+    \bo{x}_r = \bo{A}^+\bo{A} \bo{x} \in \mathcal{R}(\bo{A})
+\end{equation}
+
+You can think of this in the following terms: first we find what output $\bo{x}$ makes, then we find the smallest norm vector that produces this same output, and this vector has to 1) have the same row space projector (because output is the same), 2) has to lie in the row space, hence it is the row space projector of $\bo{x}$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Left null space}
+% \framesubtitle{Local coordinates}
+\begin{flushleft}
+
+The subspace, orthogonal to the column space is called \emph{left null space}.
+
+\bigskip
+
+\begin{definition}
+Space of all vectors that can't be produced as outputs of matrix $\bo{A}$ is called \emph{left null space}. Zero vector is included, as in linear spaces.
+\end{definition}
+
+\bigskip
+
+If we want to project vector $\bo{y}$ onto the left null space of $\bo{A}$, we do it as:
+
+\begin{equation}
+    \bo{y}_l = (\bo{I} - \bo{A}\bo{A}^+) \bo{y} \in \mathcal{C}^\perp(\bo{A})
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Finding fixed points}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+Given LTI system $\dot{\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u}$, where $\bo{x} \in \R^n$, $\bo{u} \in \R^m$, 1) find if there are states that can be made into fixed points, 2) find all states that can be made into fixed points with a constant control law.
+
+\bigskip
+
+Solution: 
+
+\begin{enumerate}
+    \item Yes, state $\bo{x} = \bo{0}$ becomes a fixed point under control law $\bo{u} = \bo{0}$ or $\bo{u} = -\bo{K}\bo{x}$.
+    \item Let us find null space of the matrix $\begin{bmatrix} \bo{A} & \bo{B} \end{bmatrix}$ as $\bo{N} = \text{null} (\begin{bmatrix} \bo{A} & \bo{B} \end{bmatrix})$. We can find all $\bo{x}$, $\bo{u}$ pairs that produce fixed points as follows: $\begin{bmatrix} \bo{x} \\ \bo{u} \end{bmatrix} = \bo{N} \bo{z}$, $\forall \bo{z}$. Let $\bo{N}_x$ be the first $n$ rows of $\bo{N}$. Then all states that can be made into fixed points are given as $\bo{x}^* = \bo{N}_x \bo{z}_x$, $\forall \bo{z}_x$
+\end{enumerate}
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Checking fixed points}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+Given LTI system $\dot{\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u}$, where $\bo{x} \in \R^n$, $\bo{u} \in \R^m$, 1) check if $\bo{x}^*$ can be made into a fixed point, 2) find control constant $\bo{u}^*$ that does it, given control law $\bo{u} = -\bo{K}\bo{x} + \bo{u}^*$.
+
+\bigskip
+
+Solution: 
+
+\begin{enumerate}
+    \item We can check that $(\bo{A}-\bo{B}\bo{K}) \bo{x}^* + \bo{B} \bo{u}^* = \bo{0}$ has a solution, in other words that $-(\bo{A}-\bo{B}\bo{K}) \bo{x}^* \in \text{col}(\bo{B})$. Resulting condition is given via projection into the left null space of $\bo{B}$: $(\bo{I} - \bo{B}\bo{B}^+)(\bo{A}-\bo{B}\bo{K})\bo{x}^* = \bo{0}$
+    \item This means finding such $\bo{u}^*$ that $(\bo{A}-\bo{B}\bo{K}) \bo{x}^* + \bo{B}\bo{u}^*= \bo{0}$. This is done via pseudo-inverse, which provides exact solution, as long as it exists: $\bo{u}^*= -\bo{B}^+(\bo{A}-\bo{B}\bo{K}) \bo{x}^*$.
+\end{enumerate}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Correcting fixed points}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+Given LTI system $\dot{\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u}$, where $\bo{x} \in \R^n$, $\bo{u} \in \R^m$, and a state $\bo{x}^d$ which can not be made into a fixed point under constant control law, find the closest to it state $\bo{x}^f$ which can be made into a fixed point.
+
+\bigskip
+
+As we know from the first example, for this LTI system all fixed points under constant control are given as $\bo{x}^* = \bo{N}_x \bo{z}_x$. To find the closest point to a given vector in a subspace, you project the vector into that subspace. In this case, we project $\bo{x}^d$ to the column space (span) of $\bo{N}_x$:
+
+\begin{equation}
+    \bo{x}^f = \bo{N}_x\bo{N}_x^+ \bo{x}^d
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Finding fixed points for affine systems}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+Given LTI system $\dot{\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} + \bo{c}$, where $\bo{x} \in \R^n$, and control law $\bo{u} = -\bo{K}\bo{x} + \bo{u}^*$, find all states that can be made fixed points by choosing appropriate $\bo{u}^*$.
+
+\bigskip
+
+We are required to find all solutions to the equation $(\bo{A} - \bo{B}\bo{K})\bo{x}^* + \bo{B}\bo{u}^* + \bo{c} = \bo{0}$. Let us define state-control pairs $\bo{v} = \begin{bmatrix} \bo{x} \\ \bo{u} \end{bmatrix}$. 
+
+\bigskip
+
+We can easily find particular solution to this linear system: $\bo{v}^p = -\begin{bmatrix} (\bo{A} - \bo{B}\bo{K}) & \bo{B} \end{bmatrix}^+\bo{c}$. 
+
+\bigskip
+
+Finding null space basis $\bo{N}$ for the matrix of this linear system: $\bo{N} = \text{null}(\begin{bmatrix} (\bo{A} - \bo{B}\bo{K}) & \bo{B} \end{bmatrix})$ we get the general solution as follows: $\bo{v}^* = \bo{v}^p + \bo{N}\bo{z}$. First $n$ equations in the expression defining $\bo{v}^*$ give us $\bo{x}^*$, the rest - $\bo{u}^*$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}
