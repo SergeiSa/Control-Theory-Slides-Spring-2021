@@ -16,6 +16,7 @@
 * Lecture 4 - https://youtu.be/geeaciySBHY
 * Lecture 5 - https://youtu.be/c9yNjq2vtpw
 * Lecture 6 - https://youtu.be/qTIOv82XAQE
+* Lecture 7 - https://youtu.be/VS0NC_a8kQY
 
 # Labs
 
