@@ -1,0 +1,252 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Lyapunov Theory, Lyapunov equations}
+\subtitle{Control Theory, Lecture 9}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+
+\begin{itemize}
+\item Lyapunov method: stability criteria
+\item Lyapunov method: examples
+\item Linear case
+\item Discrete case
+\item Lyapunov equations
+% \item Read more
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{Lyapunov method: stability criteria}
+% \framesubtitle{Parameter estimation}
+\begin{flushleft}
+
+\begin{block}{Asymptotic stability criteria}
+Autonomous dynamic system $\dot{\bo{x}} = \bo{f}(\bo{x})$ is assymptotically stable, if there exists a scalar function $V = V(\bo{x}) > 0$, whose time derivative is negative $\dot V(\bo{x}) < 0$, except $V(\bo{0}) = 0$, $\dot V(\bo{0}) = 0$.
+\end{block}
+
+\begin{block}{Marginal stability criteria}
+$\dot{\bo{x}} = \bo{f}(\bo{x})$ is stable in the sense of Lyapunov, $\exists V = V(\bo{x}) \geq 0$, $\dot V(\bo{x}) \leq 0$.
+\end{block}
+
+\begin{definition}
+Function $V = V(\bo{x}) > 0$ in this case is called \emph{Lyapunov function}.
+\end{definition}
+
+\bigskip
+
+This is not the only type of stability as you remember, you are invited to study criteria for other stability types on your own.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Lyapunov method: examples}
+\framesubtitle{Example 1}
+\begin{flushleft}
+
+Take dynamical system $\dot{x} = -x$. 
+
+\bigskip
+
+We propose a \emph{Lyapunov function candidate} $V(x) = x^2 \geq 0$. Let's find its derivative:
+
+\begin{equation}
+    \dot V(x) = \frac{\partial V}{\partial x} (-x) = 2x (-x) = -x^2 \leq 0
+\end{equation}
+
+This satisfies the Lyapunov criteria, so the system is stable. It is in fact asymptotically stable, because $V(x) \neq 0$ if $x \neq 0$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Lyapunov method: examples}
+\framesubtitle{Example 2}
+\begin{flushleft}
+
+Consider oscillator $\ddot{q} = f(q, \dot{q}) = -\dot{q}$. 
+
+\bigskip
+
+We propose a \emph{Lyapunov function candidate} $V(q, \dot{q}) = T(q, \dot{q}) = \frac{1}{2} \dot{q}^2 \geq 0$, where $T(q, \dot{q})$ is kinetic energy of the system. Let's find its derivative:
+
+\begin{equation}
+    \dot V(q, \dot{q}) = 
+    \frac{\partial V}{\partial q}       \dot{q} +
+    \frac{\partial V}{\partial \dot{q}} f(q, \dot{q}) = 
+    \dot{q} (-\dot{q}) = -\dot{q}^2 \leq 0
+\end{equation}
+
+
+This satisfies the Lyapunov criteria, so the system is stable. It is in fact not proven to be asymptotically stable, because $V(q, \dot{q}) = 0$ for any $q$ as long as $\dot{q} = 0$, and $\dot V(q, \dot{q}) = 0$ for any $q$ as long as $\dot{q} = 0$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Lyapunov method: examples}
+\framesubtitle{Example 3}
+\begin{flushleft}
+
+Consider pendulum $\ddot{q} = f(q, \dot{q}) = -\dot{q} - sin(q)$. 
+
+\bigskip
+
+We propose a \emph{Lyapunov function candidate} $V(q, \dot{q}) = E(q, \dot{q}) = \frac{1}{2} \dot{q}^2 + 1 - cos(q)\geq 0$, where $E(q, \dot{q})$ is total energy of the system. Let's find its derivative:
+
+\begin{equation}
+    \dot V(q, \dot{q}) = 
+    \frac{\partial V}{\partial q}       \dot{q} +
+    \frac{\partial V}{\partial \dot{q}} f(q, \dot{q}) = 
+    \dot{q} sin(q) + \dot{q}(-\dot{q} - sin(q)) =
+    -\dot{q}^2 \leq 0
+\end{equation}
+
+
+This satisfies the Lyapunov criteria, so the system is stable. It is in fact asymptotically stable, because $V(q, \dot{q}) \neq 0$ if $q \neq 0$ and $\dot{q} \neq 0$.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Linear case}
+\framesubtitle{Part 1}
+\begin{flushleft}
+
+As you saw, Lyapunov method allows you to deal with nonlinear systems, as well as linear ones. But for linear ones there are additional properties we can use.
+
+\begin{block}{Observation 1}
+For a linear system $\dot{\bo{x}} = \bo{A}\bo{x}$ we can always pick Lyapunov function candidate in the form $V = \bo{x}^\top\bo{S}\bo{x} \geq 0$, where $\bo{S}$ is a positive semidefinite matrix.
+\end{block}
+
+\bigskip
+
+Next slides will shows where this leads us.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Linear case}
+\framesubtitle{Part 2}
+\begin{flushleft}
+
+Given $\dot{\bo{x}} = \bo{A}\bo{x}$ and $V = \bo{x}^\top\bo{S}\bo{x} \geq 0$, let's find its derivative:
+
+\begin{equation}
+    \dot V(\bo{x}) = \dot{\bo{x}}^\top\bo{S}\bo{x} + 
+    \bo{x}^\top\bo{S}\dot{\bo{x}}
+\end{equation}
+
+\begin{equation}
+    \dot V(\bo{x}) = (\bo{A}\bo{x})^\top\bo{S}\bo{x} + 
+    \bo{x}^\top\bo{S}\bo{A}\bo{x} = 
+    \bo{x}^\top(\bo{A}^\top\bo{S} + \bo{S}\bo{A})\bo{x}
+\end{equation}
+
+Notice that $\dot V(x)$ should be negative for all $\bo{x}$ for the system to be stable, meaning that $\bo{A}^\top\bo{S} + \bo{S}\bo{A}$ should be negative semidefinite. A more strict form of this requirement is \emph{Lyapunov equation}:
+
+\begin{equation}
+    \bo{A}^\top\bo{S} + \bo{S}\bo{A} = -\bo{Q}
+\end{equation}
+
+where $\bo{Q}$ is a positive-definite matrix.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Discrete case}
+\framesubtitle{Part 1}
+\begin{flushleft}
+
+\begin{block}{Marginal stability criteria, discrete case}
+Given $\bo{x}_{i+1} = \bo{f}(\bo{x}_i)$, if $V(\bo{x}_i) \geq 0$, and $V(\bo{x}_{i+1}) - V(\bo{x}_i) \leq 0$, the system is stable.
+\end{block}
+
+\bigskip 
+
+Same as before, for linear systems we will be choosing \emph{positive semidefinite quadratic forms} as Lyapunov function candidates.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Discrete case}
+\framesubtitle{Part 2}
+\begin{flushleft}
+
+Consider dynamics $\bo{x}_{i+1} = \bo{A}\bo{x}_i$ and $V = \bo{x}_i^\top\bo{S}\bo{x}_i \geq 0$, let's find $V(\bo{x}_{i+1}) - V(\bo{x}_i)$:
+
+\begin{equation}
+    V(\bo{x}_{i+1}) - V(\bo{x}_i) = (\bo{A}\bo{x}_i)^\top\bo{S}\bo{A}\bo{x}_i - 
+    \bo{x}_i^\top\bo{S}\bo{x}_i
+\end{equation}
+\begin{equation}
+    V(\bo{x}_{i+1}) - V(\bo{x}_i) = \bo{x}_i^\top(\bo{A}^\top\bo{S}\bo{A} - \bo{S})\bo{x}_i
+\end{equation}
+
+Notice that $V(\bo{x}_{i+1}) - V(\bo{x}_i)$ should be negative for all $\bo{x}_i$ for the system to be stable, meaning that $\bo{A}^\top\bo{S}\bo{A} - \bo{S}$ should be negative semidefinite. A more strict form of this requirement is \emph{Discrete Lyapunov equation}:
+
+\begin{equation}
+    \bo{A}^\top\bo{S}\bo{A} - \bo{S} = -\bo{Q}
+\end{equation}
+
+where $\bo{Q}$ is a positive-definite matrix.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Lyapunov equations}
+% \framesubtitle{Local coordinates}
+\begin{flushleft}
+
+In practice, you can easily use Lyapunov equations for stability verification. Python and MATLAB have built-in functionality to solve it:
+
+\begin{itemize}
+    \item scipy: \texttt{linalg.solve\_continuous\_lyapunov(A, Q)}
+    \item MATLAB: \texttt{lyap(A,Q)}
+\end{itemize}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}

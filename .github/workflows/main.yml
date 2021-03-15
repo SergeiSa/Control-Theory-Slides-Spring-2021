@@ -62,6 +62,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/ColumnLeftNull/
 
+      - name: Compile LaTeX document LyapunovTheory
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/LyapunovTheory/
+
 
 
 
@@ -111,6 +117,12 @@ jobs:
           name: ColumnLeftNull.pdf
           path: Slides/ColumnLeftNull/main.pdf
 
+      - name: Save LyapunovTheory artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: LyapunovTheory.pdf
+          path: Slides/LyapunovTheory/main.pdf
+
 
       - name: Update compiled PDFs in git repository
         if: github.event.pull_request.merged == true || github.event_name == 'push'
@@ -124,6 +136,7 @@ jobs:
           git add Slides/Discrete/main.pdf
           git add Slides/NullRow/main.pdf
           git add Slides/ColumnLeftNull/main.pdf
+          git add Slides/LyapunovTheory/main.pdf
 
 
 
