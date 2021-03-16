@@ -37,11 +37,11 @@
 \begin{flushleft}
 
 \begin{block}{Asymptotic stability criteria}
-Autonomous dynamic system $\dot{\bo{x}} = \bo{f}(\bo{x})$ is assymptotically stable, if there exists a scalar function $V = V(\bo{x}) > 0$, whose time derivative is negative $\dot V(\bo{x}) < 0$, except $V(\bo{0}) = 0$, $\dot V(\bo{0}) = 0$.
+Autonomous dynamic system $\dot{\bo{x}} = \bo{f}(\bo{x})$ is assymptotically stable, if there exists a scalar function $V = V(\bo{x}) > 0$, whose time derivative is negative $\dot V(\bo{x}) > 0$, except $V(\bo{0}) = 0$, $\dot V(\bo{0}) = 0$.
 \end{block}
 
 \begin{block}{Marginal stability criteria}
-$\dot{\bo{x}} = \bo{f}(\bo{x})$ is stable in the sense of Lyapunov, $\exists V = V(\bo{x}) \geq 0$, $\dot V(\bo{x}) \leq 0$.
+$\dot{\bo{x}} = \bo{f}(\bo{x})$ is stable in the sense of Lyapunov, $\exists V = V(\bo{x}) > 0$, $\dot V(\bo{x}) \leq 0$.
 \end{block}
 
 \begin{definition}
@@ -181,7 +181,7 @@ where $\bo{Q}$ is a positive-definite matrix.
 \begin{flushleft}
 
 \begin{block}{Marginal stability criteria, discrete case}
-Given $\bo{x}_{i+1} = \bo{f}(\bo{x}_i)$, if $V(\bo{x}_i) \geq 0$, and $V(\bo{x}_{i+1}) - V(\bo{x}_i) \leq 0$, the system is stable.
+Given $\bo{x}_{i+1} = \bo{f}(\bo{x}_i)$, if $V(\bo{x}_i) > 0$, and $V(\bo{x}_{i+1}) - V(\bo{x}_i) \leq 0$, the system is stable.
 \end{block}
 
 \bigskip 
