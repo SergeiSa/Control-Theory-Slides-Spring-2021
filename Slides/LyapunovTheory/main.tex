@@ -70,7 +70,7 @@ We propose a \emph{Lyapunov function candidate} $V(x) = x^2 \geq 0$. Let's find 
     \dot V(x) = \frac{\partial V}{\partial x} (-x) = 2x (-x) = -x^2 \leq 0
 \end{equation}
 
-This satisfies the Lyapunov criteria, so the system is stable. It is in fact asymptotically stable, because $V(x) \neq 0$ if $x \neq 0$.
+This satisfies the Lyapunov criteria, so the system is stable. It is in fact asymptotically stable, because $\dot V(x) \neq 0$ if $x \neq 0$.
 
 \end{flushleft}
 \end{frame}
@@ -95,7 +95,7 @@ We propose a \emph{Lyapunov function candidate} $V(q, \dot{q}) = T(q, \dot{q}) =
 \end{equation}
 
 
-This satisfies the Lyapunov criteria, so the system is stable. It is in fact not proven to be asymptotically stable, because $V(q, \dot{q}) = 0$ for any $q$ as long as $\dot{q} = 0$, and $\dot V(q, \dot{q}) = 0$ for any $q$ as long as $\dot{q} = 0$.
+This satisfies the Lyapunov criteria, so the system is stable. But it is not proven to be asymptotically stable, because $\dot V(q, \dot{q}) = 0$ for any $q$ as long as $\dot{q} = 0$.
 
 \end{flushleft}
 \end{frame}
@@ -122,7 +122,7 @@ We propose a \emph{Lyapunov function candidate} $V(q, \dot{q}) = E(q, \dot{q}) =
 \end{equation}
 
 
-This satisfies the Lyapunov criteria, so the system is stable. It is in fact asymptotically stable, because $V(q, \dot{q}) \neq 0$ if $q \neq 0$ and $\dot{q} \neq 0$.
+This satisfies the Lyapunov criteria, so the system is stable. It is not proven to be asymptotically stable, because $\dot V(q, \dot{q}) = 0$ for any $q$, as long as $\dot{q} = 0$.
 
 \end{flushleft}
 \end{frame}
