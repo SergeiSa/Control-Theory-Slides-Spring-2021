@@ -7,6 +7,7 @@
 * Lecture 5 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Discrete
 * Lecture 6 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/NullRow
 * Lecture 7 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/ColumnLeftNull
+* Lecture 8 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/LyapunovTheory
 
 # Lecture videos 
 
