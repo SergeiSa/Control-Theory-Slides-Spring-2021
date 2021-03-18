@@ -68,6 +68,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/LyapunovTheory/
 
+      - name: Compile LaTeX document HJB_LQR
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/HJB_LQR/
+
 
 
 
@@ -123,6 +129,14 @@ jobs:
           name: LyapunovTheory.pdf
           path: Slides/LyapunovTheory/main.pdf
 
+      - name: Save HJB_LQR artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: HJB_LQR.pdf
+          path: Slides/HJB_LQR/main.pdf
+
+
+
 
       - name: Update compiled PDFs in git repository
         if: github.event.pull_request.merged == true || github.event_name == 'push'
@@ -137,6 +151,7 @@ jobs:
           git add Slides/NullRow/main.pdf
           git add Slides/ColumnLeftNull/main.pdf
           git add Slides/LyapunovTheory/main.pdf
+          git add Slides/HJB_LQR/main.pdf
 
 
 

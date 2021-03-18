@@ -1,0 +1,349 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Hamilton-Jacobi-Bellman eq., Riccati eq., Linear Quadratic Regulator}
+\subtitle{Control Theory, Lecture 9}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+\begin{itemize}
+\item Hamilton-Jacobi-Bellman equation
+\begin{itemize}
+    \item Definitions
+    \item Cost, optimal cost
+    \item Differentiating optimal cost
+\end{itemize}
+\item Algebraic Riccati equation
+\begin{itemize}
+    \item HJB for LTI
+    \item Linear Quadratic Regulator
+    \item Numerical methods
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hamilton-Jacobi-Bellman equation}
+\framesubtitle{Definitions}
+\begin{flushleft}
+
+Let us define dynamics:
+
+\begin{equation}
+    \dot {\bo{x}} = \bo{f} (\bo{x}, \bo{u})
+\end{equation}
+%
+with initial conditions $\bo{x}(0)$. 
+
+\bigskip
+
+Additionally we define \emph{control policy} as:
+
+\begin{equation}
+    \bo{u} = \pi (\bo{x}, t)
+\end{equation}
+
+To connect with the previous ways we talked about control, we can say that choosing different control gains and different feed-forward control amounts to choosing a different control policy.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Hamilton-Jacobi-Bellman equation}
+\framesubtitle{Cost, optimal cost}
+\begin{flushleft}
+
+Let $J$ be an additive cost function:
+
+\begin{equation}
+J (\bo{x}_0, \pi (\bo{x}, t)) = \int_0^\infty g(\bo{x}, \bo{u}) dt
+\end{equation}
+%
+where $g(\bo{x}, \bo{u})$ is instantaneous cost and $\bo{x}_0 = \bo{x}(0)$ is the initial conditions. Notice that $J$ depends on $\bo{x}_0$ rather than $\bo{x}(t)$, since initial conditions and control policy completely define the trajectory of the system $\bo{x}(t)$.
+
+
+\bigskip
+
+Let $J^*$ be the optimal (lowest possible) cost. In other words:
+
+\begin{equation}
+J^*(\bo{x}_0) = \underset{\pi}{\inf{}} J(\bo{x}_0, \pi (\bo{x}, t))
+\end{equation}
+
+Optimal cost is attained when optimal policy is attained: $\pi = \pi^*(\bo{x}, t)$
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Hamilton-Jacobi-Bellman equation}
+\framesubtitle{Differentiating optimal cost}
+\begin{flushleft}
+
+
+Since $J^*(\bo{x}_0)$ does not depend on $t$, its full derivative is zero:
+
+\begin{equation}
+\frac{d J^*(\bo{x}_0)}{dt} = 0
+\end{equation}
+
+At the same time, we can expand the full derivative as follows:
+
+\begin{equation}
+\frac{d J^*}{dt } = 
+\frac{\partial J^*}{\partial \bo{x}} \dot {\bo{x}} +
+\frac{\partial J^*}{\partial t} = 0
+\end{equation}
+
+\bigskip
+
+Observe that $\frac{\partial J^*}{\partial t} = g(\bo{x}, \bo{u})$, and $\dot {\bo{x}} = \bo{f} (\bo{x}, \bo{u})$. Therefore:
+
+\begin{equation}
+\frac{\partial J^*}{\partial \bo{x}} \bo{f} (\bo{x}, \bo{u}) +
+g(\bo{x}, \bo{u}) = 0
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Hamilton-Jacobi-Bellman equation}
+% \framesubtitle{HJB}
+\begin{flushleft}
+
+With this, we can formulate \emph{Hamilton-Jacobi-Bellman equation} (HJB):
+
+\begin{equation}
+\label{eq:HJB_0}
+\underset{\bo{u}}{\min} \ 
+\left[ 
+g(\bo{x}, \bo{u}) + 
+\frac{\partial J^*}{\partial \bo{x}} \bo{f} (\bo{x}, \bo{u}) 
+\right] = 0
+\end{equation}
+
+This can be loosely interpreted as follows: the value in square brackets is $\dot J(\bo{x}_0, \pi)$, which is equal to 0 when $\pi = \pi^*(\bo{x}, t)$, and is positive otherwise (in the small vicinity of $\pi^*$), as $J(\bo{x}_0, \pi^*)$ is smaller than any $J(\bo{x}_0, \pi), \ \pi^* \neq \pi$.
+
+\bigskip
+
+
+We can find control that delivers minimum to the function \eqref{eq:HJB_0}:
+
+\begin{equation}
+u^* = \underset{\bo{u}}{\argmin} \ 
+\left[ 
+g(\bo{x}, \bo{u}) + 
+\frac{\partial J^*}{\partial \bo{x}} \bo{f} (\bo{x}, \bo{u}) \right] 
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Algebraic Riccati}
+\framesubtitle{HJB for LTI}
+\begin{flushleft}
+
+For LTI, dynamics is:
+\begin{equation}
+\dot {\bo{x}} = \bo{A}  \bo{x} + \bo{B} \bo{u}
+\end{equation}
+
+We can choose quadratic cost:
+\begin{equation}
+g(\mathbf  x, \mathbf  u) = 
+\mathbf  x^\top \bo{Q} \bo{x} +
+\mathbf  u^\top \bo{R} \bo{u} 
+\end{equation}
+
+Then HJB becomes:
+\begin{equation}
+\underset{\bo{u}}{\min} \ [ 
+\bo{x}^\top \bo{Q} \bo{x} +
+\bo{u}^\top \bo{R} \bo{u} + 
+\frac{\partial J^*}{\partial \bo{x}} 
+(\bo{A} \bo{x} + \bo{B} \bo{u})] = 0
+\end{equation}
+%
+where $\bo{Q} = \bo{Q}^\top \geq 0 $ and $\bo{R} = \bo{R}^\top > 0$.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Algebraic Riccati}
+\framesubtitle{HJB for LTI, part 2}
+\begin{flushleft}
+
+There is a theorem that says that for LTI with quadratic cost, $J^*$ has the form:
+
+\begin{equation}
+J^* = \mathbf  x^\top \bo{S} \bo{x}
+\end{equation}
+%
+where $\bo{S} = \bo{S}^\top \geq 0$.
+
+\bigskip
+
+Then HJB becomes:
+
+\[
+\underset{\bo{u}}{\min} \ 
+\left [ 
+\mathbf  x^\top \bo{Q} \bo{x} +
+\mathbf  u^\top \bo{R} \bo{u}
++ 
+\bo{x}^\top \bo{S}
+(\bo{A} \bo{x} + \bo{B} \bo{u}) 
++ 
+(\bo{A} \bo{x} + \bo{B} \bo{u})^\top
+\bo{S} \bo{x}
+\right ] = 0
+\]
+
+Simplifying, we get:
+
+\[
+\underset{\bo{u}}{\min} \ 
+\left [ 
+\bo{u}^\top \bo{R} \bo{u}
++ 
+\bo{x}^\top (
+\bo{Q} + \bo{S} \bo{A} + \bo{A}^\top \bo{S}
+)\bo{x}
++ 
+\bo{x}^\top \bo{S} \bo{B} \bo{u} 
++ \bo{u}^\top \bo{B}^\top \bo{S} \bo{x} 
+\right ] = 0
+\]
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Algebraic Riccati}
+\framesubtitle{Linear Quadratic Regulator}
+\begin{flushleft}
+
+
+Finding partial derivative of the HJB with respect to $\bo{u}$ and setting it to zero (as it is an extreme point) we get:
+\begin{equation}
+2 \mathbf  u^\top \bo{R} + 
+2 \bo{x}^\top \bo{S} \bo{B} = 0
+\end{equation}
+
+This expression can be transposed and $\mathbf  u$ separated:
+
+\begin{equation}
+\mathbf  u = 
+-\bo{R}^{-1} \bo{B}^\top \bo{S} \bo{x}
+\end{equation}
+
+This is the desired control law. We can see that it is \emph{proportional}. We can re-write it as:
+
+\begin{equation}
+\mathbf  u = -\mathbf K \bo{x}
+\end{equation}
+
+where $\mathbf K = \bo{R}^{-1} \bo{B}^\top \bo{S}$ is the controller gain. This control law is called Linear Quadratic Regulator (LQR).
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Algebraic Riccati}
+% \framesubtitle{Algebraic Riccati}
+\begin{flushleft}
+
+Substituting found control law into the HJB, we find:
+\begin{equation}
+\begin{split}
+\underset{\bo{u}}{\min} \ 
+[ 
+\bo{x}^\top (
+\bo{Q} + \bo{S} \bo{A} + \bo{A}^\top \bo{S}
+)\bo{x}
++
+\bo{x}^\top \bo{S} \bo{B} \bo{R}^{-1} \bo{R} \mathbf  R^{-1} \bo{B}^\top \bo{S} \bo{x}
+- \\
+- 
+\bo{x}^\top \bo{S} \bo{B} \bo{R}^{-1} \bo{B}^\top \bo{S} \bo{x}
+- 
+\bo{x}^\top\bo{S} \bo{B} \bo{R}^{-1} \bo{B}^\top \bo{S} \bo{x} 
+] = 0
+\end{split}
+\end{equation}
+
+Simplifying, we get: 
+
+\begin{equation}
+\bo{x}^\top (\bo{Q} + \bo{S} \bo{A} + \bo{A}^\top \bo{S}
+- \bo{S} \bo{B} \bo{R}^{-1} \bo{B}^\top \bo{S}) \bo{x} = 0
+\end{equation}
+%
+which would hold for all $\bo{x}$ iff:
+%
+
+\begin{equation}
+\bo{Q} - \bo{S} \bo{B} \bo{R}^{-1} \bo{B}^\top \bo{S} 
+ + \bo{S} \bo{A} + \bo{A}^\top \bo{S} = 0
+\end{equation}
+
+This is the \emph{Algebraic Riccati equation}.
+
+\end{flushleft}
+\end{frame}
+
+\begin{frame}{Algebraic Riccati}
+\framesubtitle{Numerical methods}
+\begin{flushleft}
+
+There are a number of ways to solve LQR:
+
+\bigskip
+
+\begin{itemize}
+    \item In MATLAB there is a function \texttt{[K,S,P] = lqr(A,B,Q,R), where P=eig(A-B*K)}
+    \item In Python, there is \texttt{S = scipy.linalg.solve\_continuous\_are(A,B,Q,R)}
+    \item In Drake (by MIT and Toyota Research) there is a function \texttt{(K,S) = LinearQuadraticRegulator(A,B,Q,R)}
+\end{itemize}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}
