@@ -106,6 +106,11 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 * 3.9 Liapunov’s direct method - https://folk.uib.no/nmagb/m2142002l3.pdf
 * Universita degli studi di Padova Dipartimento di Ingegneria dell'Informazione, Nicoletta Bof, Ruggero Carli, Luca Schenato, Technical Report, Lyapunov Theory for Discrete Time Systems - https://arxiv.org/abs/1809.05289
 
+## Lecture 9 LQR
+* Linear Quadratic Regulators - http://underactuated.mit.edu/lqr.html
+
+
+
 ## Other
 
 ### MIMO, LTI, LTV
