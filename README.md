@@ -8,6 +8,8 @@
 * Lecture 6 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/NullRow
 * Lecture 7 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/ColumnLeftNull
 * Lecture 8 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/LyapunovTheory
+* Lecture 9 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/HJB_LQR
+* Lecture 10 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Observer
 
 # Lecture videos 
 
