@@ -32,6 +32,10 @@
 * Lecture 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice2_LTI_Stability.ipynb
 * Lecture 3 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice3_transfer_functions.ipynb
 
+...
+
+* Lecture 8 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/lecture8_LyapunovEq.ipynb
+
 # For contributors
 
 Pull requests with suggestions and improvements, however small or big, are welcome!
