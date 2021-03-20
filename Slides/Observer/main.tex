@@ -1,0 +1,303 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Observers}
+\subtitle{Control Theory, Lecture 10}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+\begin{itemize}
+\item Hamilton-Jacobi-Bellman equation
+% \begin{itemize}
+%     \item Definitions
+%     \item Cost, optimal cost
+%     \item Differentiating optimal cost
+% \end{itemize}
+% \item Algebraic Riccati equation
+% \begin{itemize}
+%     \item HJB for LTI
+%     \item Linear Quadratic Regulator
+%     \item Numerical methods
+% \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Measurement}
+\framesubtitle{How do we know the state?}
+\begin{flushleft}
+
+Before we considered systems and control laws of the following type:
+
+\begin{equation}
+\begin{cases}
+\dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u}\\
+\bo{u} = \mathbf K \bo{x}
+\end{cases}
+\end{equation}
+
+But when we implement that control law, how do we know the current value of $\bo{x}$? Previously we always took it from simulation. 
+
+\bigskip
+
+In practice, we take it from \emph{measurement}.
+
+\end{flushleft}
+\end{frame}
+
+\begin{frame}{Measurement}
+\framesubtitle{Why information is imperfect?}
+\begin{flushleft}
+
+There are a number of reasons why we can not directly measure the state of the system. Here are some:
+
+\begin{itemize}
+\item Digital measurements are done in discrete time intervals;
+\item Unpredicted events (faults, collisions, etc.);
+\item Un-modelled kinematics or dynamics (links bending, gear box backlash,  friction, etc.) making the very definition of the state disconnected from reality;
+\item Lack of sensors;
+\item Imprecise, nonlinear and biased sensors;
+\item Physics, quantum-scale effects and alike;
+\end{itemize}
+
+\end{flushleft}
+\end{frame}
+
+\begin{frame}{Measurement}
+\framesubtitle{Definition}
+\begin{flushleft}
+
+Let us introduce new notation. Assume we have an LTI system of the following form:
+
+\begin{equation}
+\begin{cases}
+\dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} \\
+\bo{y} = \bo{C} \bo{x} \\
+\bo{u} = \bo{g}(\hat{\bo{x}}, t)\\
+\hat{\bo{x}} = \bo{o}(\cdot)
+\end{cases}
+\end{equation}
+
+Then:
+
+\begin{itemize}
+\item $\bo{x}$ is the state (actual or true state)
+\item $\bo{y}$ is the output (actual or true output)
+% \item $\Tilde{\bo{y}}$ is the measured output
+\item $\hat{\bo{x}}$ is the estimated (observed) state
+\item $\hat{\bo{y}}$ is the estimated (observed) output
+\end{itemize}
+
+Notice that we never know true state $\bo{x}$, and therefore for the control purposes we have to use the estimated state $\hat{\bo{x}}$.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Observation}
+\framesubtitle{Using the knowledge about dynamics}
+\begin{flushleft}
+
+Let us consider autonomous dynamical system
+\begin{equation}
+\label{eq:LTI}
+\begin{cases}
+\dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} \\
+\bo{y} = \bo{C} \bo{x}
+\end{cases}
+\end{equation}
+%
+with measurements $\bo{y}$. We want to get as good estimate of the state $\hat{\bo{x}}$ as we can.
+
+\bigskip
+
+First note: dynamics should also hold for our observed state:
+\begin{equation}
+\hat{\dot {\bo{x}}} = \bo{A} \hat{\bo{x}} + \bo{B} \bo{u}
+\end{equation}
+%
+Therefore if we know the initial conditions of our system exactly, and we know our model exactly, we can find exact state of the system without using measurement $\Tilde{\mathbf y}$. 
+
+This we can call open loop observation. Unfortunately, we never know neither model nor initial conditions exactly.
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Observation}
+\framesubtitle{Observer}
+\begin{flushleft}
+
+We propose \emph{observer} that takes into account measurements in a linear way:
+
+\begin{equation}
+\label{eq:Observer}
+\hat{\dot {\mathbf x}} = \mathbf A \hat{\mathbf x} + \mathbf B \mathbf u + \mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\end{equation}
+%
+with measurements $\bo{y}$. With this observer, we want to get as good estimate of the state $\hat{\bo{x}}$ as we can.
+
+\bigskip
+
+Let's define state estimation error as $\varepsilon = \hat{\mathbf x} - \mathbf x$. We can subtract \eqref{eq:LTI} from \eqref{eq:Observer}, to get \emph{observer error dynamics}:
+
+\begin{equation}
+\hat{\dot {\mathbf x}} - \dot {\mathbf x}= 
+\mathbf A \hat{\mathbf x} - \mathbf A \mathbf x + 
+\mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\end{equation}
+
+\begin{equation}
+\dot {\varepsilon}= 
+(\mathbf A - \mathbf L \bo{C}) \varepsilon
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Observation}
+\framesubtitle{Observer gains}
+\begin{flushleft}
+
+The observer $\dot {\varepsilon}= 
+(\mathbf A - \mathbf L \bo{C}) \varepsilon$ is \emph{stable} (i.e., the state estimation error tends to zero), as long as the following matrix is negative-definite:
+
+\[
+\mathbf A - 
+\mathbf L \mathbf C < 0
+\]
+
+We need to find $\mathbf L$. Let us observe the key difference between observer design and controller design:
+
+\bigskip
+
+\begin{itemize}
+    \item Controller design: find such $\mathbf K$ that $\mathbf A - \mathbf B \mathbf K < 0$.
+    \item Observer design: find such $\mathbf L$ that: $\mathbf A - \mathbf L \mathbf C < 0$
+\end{itemize}
+
+\bigskip
+
+We have instruments for finding $\mathbf K$, what about $\mathbf L$?
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Observer Design}
+\framesubtitle{General case: design via Riccati eq.}
+\begin{flushleft}
+
+In general, we can observe that if $\mathbf A - \mathbf L \mathbf C$ is negative-definite, then $(\mathbf A - 
+\mathbf L \mathbf C)^{\top}$ is negative-definite too (by definition of the negative-definiteness). 
+
+\bigskip
+
+Therefore, we can solve the following \emph{dual problem}:
+
+\begin{itemize}
+    \item find such $\mathbf L$ that $\mathbf A^{\top} - 
+\mathbf C^{\top} \mathbf L^{\top} < 0$.
+\end{itemize}
+
+\bigskip
+
+The dual problem is \emph{equivalent} to the control design problem. We can solve it by producing and solving algebraic Riccati equation, as in the LQR formulation. In pseudo-code it can be represented the following way:
+
+\bigskip
+
+$\mathbf L^{\top}$ \texttt{= lqr}($\mathbf A^{\top}$, $\mathbf C^{\top}$, $\mathbf Q$, $\mathbf R$).
+
+where $\mathbf Q$ and $\mathbf R$ are weight  matrices, determining the "sensitivity" or "aggressiveness" of the observer.
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Observation and Control}
+\framesubtitle{LTI}
+\begin{flushleft}
+
+Thus we get dynamics+observer combination:
+
+\begin{equation}
+\begin{cases}
+\dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} \\
+\bo{u} = -\bo{K} (\bo{x} - \bo{x}^*(t)) + \bo{u}^*(t)\\
+\bo{y} = \bo{C} \bo{x} \\
+\hat{\dot {\mathbf x}} = \mathbf A \hat{\mathbf x} + \mathbf B \mathbf u + \mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\end{cases}
+\end{equation}
+
+\bigskip
+
+where $\mathbf A - \mathbf B \mathbf K < 0$ and $\mathbf A^{\top} - 
+\mathbf C^{\top} \mathbf L^{\top} < 0$.
+
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Observation and Control}
+\framesubtitle{Affine case}
+\begin{flushleft}
+
+Affine case is almost the same:
+
+\begin{equation}
+\begin{cases}
+\dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} + \bo{c} \\
+\bo{u} = -\bo{K} (\bo{x} - \bo{x}^*(t)) + \bo{u}^*(t)\\
+\bo{y} = \bo{C} \bo{x} \\
+\hat{\dot {\mathbf x}} = \mathbf A \hat{\mathbf x} + \mathbf B \mathbf u + \bo{c} + \mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\end{cases}
+\end{equation}
+
+\bigskip
+
+where $\mathbf A - \mathbf B \mathbf K < 0$ and $\mathbf A^{\top} - 
+\mathbf C^{\top} \mathbf L^{\top} < 0$.
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+\bigskip
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}

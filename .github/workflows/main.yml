@@ -74,6 +74,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/HJB_LQR/
 
+      - name: Compile LaTeX document Observer
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Observer/
+
 
 
 
@@ -135,6 +141,12 @@ jobs:
           name: HJB_LQR.pdf
           path: Slides/HJB_LQR/main.pdf
 
+      - name: Save Observer artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Observer.pdf
+          path: Slides/Observer/main.pdf
+
 
 
 
@@ -152,6 +164,7 @@ jobs:
           git add Slides/ColumnLeftNull/main.pdf
           git add Slides/LyapunovTheory/main.pdf
           git add Slides/HJB_LQR/main.pdf
+          git add Slides/Observer/main.pdf
 
 
 
