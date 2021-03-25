@@ -44,7 +44,7 @@ Before we considered systems and control laws of the following type:
 \begin{equation}
 \begin{cases}
 \dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u}\\
-\bo{u} = \mathbf K \bo{x}
+\bo{u} = \bo{K} \bo{x}
 \end{cases}
 \end{equation}
 
@@ -149,24 +149,24 @@ We propose \emph{observer} that takes into account measurements in a linear way:
 
 \begin{equation}
 \label{eq:Observer}
-\hat{\dot {\mathbf x}} = \mathbf A \hat{\mathbf x} + \mathbf B \mathbf u + \mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\hat{\dot {\bo{x}}} = \bo{A} \hat{\bo{x}} + \bo{B} \mathbf u + \bo{L}(\mathbf y - \bo{C} \hat{\bo{x}})
 \end{equation}
 %
 with measurements $\bo{y}$. With this observer, we want to get as good estimate of the state $\hat{\bo{x}}$ as we can.
 
 \bigskip
 
-Let's define state estimation error as $\varepsilon = \hat{\mathbf x} - \mathbf x$. We can subtract \eqref{eq:LTI} from \eqref{eq:Observer}, to get \emph{observer error dynamics}:
+Let's define state estimation error as $\varepsilon = \hat{\bo{x}} - \bo{x}$. We can subtract \eqref{eq:LTI} from \eqref{eq:Observer}, to get \emph{observer error dynamics}:
 
 \begin{equation}
-\hat{\dot {\mathbf x}} - \dot {\mathbf x}= 
-\mathbf A \hat{\mathbf x} - \mathbf A \mathbf x + 
-\mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\hat{\dot {\bo{x}}} - \dot {\bo{x}}= 
+\bo{A} \hat{\bo{x}} - \bo{A} \bo{x} + 
+\bo{L}(\mathbf y - \bo{C} \hat{\bo{x}})
 \end{equation}
 
 \begin{equation}
 \dot {\varepsilon}= 
-(\mathbf A - \mathbf L \bo{C}) \varepsilon
+(\bo{A} - \bo{L} \bo{C}) \varepsilon
 \end{equation}
 
 \end{flushleft}
@@ -181,25 +181,25 @@ Let's define state estimation error as $\varepsilon = \hat{\mathbf x} - \mathbf 
 \begin{flushleft}
 
 The observer $\dot {\varepsilon}= 
-(\mathbf A - \mathbf L \bo{C}) \varepsilon$ is \emph{stable} (i.e., the state estimation error tends to zero), as long as the following matrix is negative-definite:
+(\bo{A} - \bo{L} \bo{C}) \varepsilon$ is \emph{stable} (i.e., the state estimation error tends to zero), as long as the following matrix is negative-definite:
 
 \[
-\mathbf A - 
-\mathbf L \mathbf C < 0
+\bo{A} - 
+\bo{L} \bo{c} < 0
 \]
 
-We need to find $\mathbf L$. Let us observe the key difference between observer design and controller design:
+We need to find $\bo{L}$. Let us observe the key difference between observer design and controller design:
 
 \bigskip
 
 \begin{itemize}
-    \item Controller design: find such $\mathbf K$ that $\mathbf A - \mathbf B \mathbf K < 0$.
-    \item Observer design: find such $\mathbf L$ that: $\mathbf A - \mathbf L \mathbf C < 0$
+    \item Controller design: find such $\bo{K}$ that $\bo{A} - \bo{B} \bo{K} < 0$.
+    \item Observer design: find such $\bo{L}$ that: $\bo{A} - \bo{L} \bo{c} < 0$
 \end{itemize}
 
 \bigskip
 
-We have instruments for finding $\mathbf K$, what about $\mathbf L$?
+We have instruments for finding $\bo{K}$, what about $\bo{L}$?
 
 \end{flushleft}
 \end{frame}
@@ -209,16 +209,16 @@ We have instruments for finding $\mathbf K$, what about $\mathbf L$?
 \framesubtitle{General case: design via Riccati eq.}
 \begin{flushleft}
 
-In general, we can observe that if $\mathbf A - \mathbf L \mathbf C$ is negative-definite, then $(\mathbf A - 
-\mathbf L \mathbf C)^{\top}$ is negative-definite too (by definition of the negative-definiteness). 
+In general, we can observe that if $\bo{A} - \bo{L} \bo{c}$ is negative-definite, then $(\bo{A} - 
+\bo{L} \bo{c})^{\top}$ is negative-definite too (by definition of the negative-definiteness). 
 
 \bigskip
 
 Therefore, we can solve the following \emph{dual problem}:
 
 \begin{itemize}
-    \item find such $\mathbf L$ that $\mathbf A^{\top} - 
-\mathbf C^{\top} \mathbf L^{\top} < 0$.
+    \item find such $\bo{L}$ that $\bo{A}^{\top} - 
+\bo{c}^{\top} \bo{L}^{\top} < 0$.
 \end{itemize}
 
 \bigskip
@@ -227,7 +227,7 @@ The dual problem is \emph{equivalent} to the control design problem. We can solv
 
 \bigskip
 
-$\mathbf L^{\top}$ \texttt{= lqr}($\mathbf A^{\top}$, $\mathbf C^{\top}$, $\mathbf Q$, $\mathbf R$).
+$\bo{L}^{\top}$ \texttt{= lqr}($\bo{A}^{\top}$, $\bo{c}^{\top}$, $\mathbf Q$, $\mathbf R$).
 
 where $\mathbf Q$ and $\mathbf R$ are weight  matrices, determining the "sensitivity" or "aggressiveness" of the observer.
 
@@ -247,45 +247,194 @@ Thus we get dynamics+observer combination:
 \begin{equation}
 \begin{cases}
 \dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} \\
-\bo{u} = -\bo{K} (\bo{x} - \bo{x}^*(t)) + \bo{u}^*(t)\\
+\hat{\dot {\bo{x}}} = \bo{A} \hat{\bo{x}} + \bo{B} \mathbf u + \bo{L}(\mathbf y - \bo{C} \hat{\bo{x}})\\
 \bo{y} = \bo{C} \bo{x} \\
-\hat{\dot {\mathbf x}} = \mathbf A \hat{\mathbf x} + \mathbf B \mathbf u + \mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\bo{u} = -\bo{K} (\hat{\bo{x}} - \bo{x}^*(t)) + \bo{u}^*(t)
 \end{cases}
 \end{equation}
 
 \bigskip
 
-where $\mathbf A - \mathbf B \mathbf K < 0$ and $\mathbf A^{\top} - 
-\mathbf C^{\top} \mathbf L^{\top} < 0$.
+where $\bo{A} - \bo{B} \bo{K} < 0$ and $\bo{A}^{\top} - 
+\bo{c}^{\top} \bo{L}^{\top} < 0$.
 
 
 \end{flushleft}
 \end{frame}
+
+
 
 
 \begin{frame}{Observation and Control}
-\framesubtitle{Affine case}
+\framesubtitle{Stability analysis}
 \begin{flushleft}
 
-Affine case is almost the same:
+When we want to stabilize the origin, the dynamics+observer combination can be represented as a single LTI:
 
 \begin{equation}
 \begin{cases}
-\dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} + \bo{c} \\
-\bo{u} = -\bo{K} (\bo{x} - \bo{x}^*(t)) + \bo{u}^*(t)\\
+\dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} \\
+\hat{\dot {\bo{x}}} = \bo{A} \hat{\bo{x}} + \bo{B} \mathbf u + \bo{L}(\mathbf y - \bo{C} \hat{\bo{x}})\\
 \bo{y} = \bo{C} \bo{x} \\
-\hat{\dot {\mathbf x}} = \mathbf A \hat{\mathbf x} + \mathbf B \mathbf u + \bo{c} + \mathbf L(\mathbf y - \bo{C} \hat{\mathbf x})
+\bo{u} = -\bo{K} \hat{\bo{x}}
 \end{cases}
+\end{equation}
+
+In matrix form it becomes:
+
+\begin{equation}
+\begin{bmatrix}
+\dot {\bo{x}} \\
+\hat{\dot {\bo{x}}}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\bo{A} & -\bo{B}\bo{K} \\
+\bo{L}\bo{C} & (\bo{A} - \bo{B}\bo{K}-\bo{L}\bo{C})
+\end{bmatrix}
+\begin{bmatrix}
+\bo{x} \\
+\hat{\bo{x}}
+\end{bmatrix}
 \end{equation}
 
 \bigskip
 
-where $\mathbf A - \mathbf B \mathbf K < 0$ and $\mathbf A^{\top} - 
-\mathbf C^{\top} \mathbf L^{\top} < 0$.
+We can't directly reason about eigenvalues of this matrix. Next slide will show a way to do it with a change of variables.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Observation and Control}
+\framesubtitle{Change of variables}
+\begin{flushleft}
+
+Let us use the following substitution: $\bo{e} = \bo{x} - \hat{\bo{x}}$, which implies $\hat{\bo{x}} = \bo{x} - \bo{e}$:
+
+Our system had form:
+
+\begin{equation}
+\begin{cases}
+\dot {\bo{x}} = \bo{A} \bo{x} - \bo{B}\bo{K} \hat{\bo{x}} \\
+\hat{\dot {\bo{x}}} = \bo{A} \hat{\bo{x}} - \bo{B}\bo{K} \hat{\bo{x}} + \bo{L}(\bo{C} \bo{x} - \bo{C} \hat{\bo{x}})
+\end{cases}
+\end{equation}
+
+Since $\dot{\bo{e}} = \dot{\bo{x}} - \hat{\dot{\bo{x}}}$, we get:
+%
+\[
+\dot{\bo{e}} = 
+\bo{A} \bo{x} - \bo{B}\bo{K} \hat{\bo{x}} - 
+(\bo{A} \hat{\bo{x}} - \bo{B}\bo{K} \hat{\bo{x}} + \bo{L}(\bo{C} \bo{x} - \bo{C} \hat{\bo{x}}))
+\]
+%
+\[
+\dot{\bo{e}} = 
+\bo{A} (\bo{x} - \hat{\bo{x}})  - \bo{L}\bo{C}(\bo{x} - \hat{\bo{x}})
+\]
+%
+\[
+\dot{\bo{e}} = 
+(\bo{A}  - \bo{L}\bo{C})\bo{e}
+\]
+
+Equation for $\dot {\bo{x}}$ takes form:
+
+\[
+\dot {\bo{x}} = (\bo{A}-\bo{B}\bo{K}) \bo{x} +  \bo{B}\bo{K}\bo{e}
+\]
 
 
 \end{flushleft}
 \end{frame}
+
+
+
+
+\begin{frame}{Observation and Control}
+\framesubtitle{Upper triangular form}
+\begin{flushleft}
+
+Collecting $\dot {\bo{x}}$ and $\dot{\bo{e}}$ we get:
+
+\begin{equation}
+\begin{cases}
+\dot {\bo{x}} = (\bo{A}-\bo{B}\bo{K}) \bo{x} +  \bo{B}\bo{K}\bo{e} \\
+\dot{\bo{e}} = 
+(\bo{A}  - \bo{L}\bo{C})\bo{e}
+\end{cases}
+\end{equation}
+
+In matrix form it becomes:
+
+\begin{equation}
+\begin{bmatrix}
+\dot {\bo{x}} \\
+\dot{\bo{e}}
+\end{bmatrix}
+=
+\begin{bmatrix}
+(\bo{A}-\bo{B}\bo{K}) & \bo{B}\bo{K} \\
+0 & (\bo{A}  - \bo{L}\bo{C})
+\end{bmatrix}
+\begin{bmatrix}
+\bo{x} \\
+\bo{e}
+\end{bmatrix}
+\end{equation}
+
+Eigenvalues of a upper block-triangular matrices equal to the union of the eigenvalues of the blocks on the main diagonal. Hence here, the eigenvalues of the system are equal to the union of eigenvalues of $(\bo{A}-\bo{B}\bo{K})$ and $(\bo{A}  - \bo{L}\bo{C})$. 
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Observation and Control}
+\framesubtitle{Separation principle}
+\begin{flushleft}
+ 
+Since the eigenvalues of the system are equal to the union of eigenvalues of $(\bo{A}-\bo{B}\bo{K})$ and $(\bo{A}  - \bo{L}\bo{C})$, we can make the following observation:
+
+\bigskip
+
+\begin{alertblock}{Separation principle}
+As long as the observer and the controller are stable independently, the overall system is stable too. This is called \emph{separation principle}.
+\end{alertblock}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+% \begin{frame}{Observation and Control}
+% \framesubtitle{Affine case}
+% \begin{flushleft}
+
+
+% Affine case is almost the same:
+
+% \begin{equation}
+% \begin{cases}
+% \dot {\bo{x}} = \bo{A} \bo{x} + \bo{B} \bo{u} + \bo{c}\\
+% \hat{\dot {\bo{x}}} = \bo{A} \hat{\bo{x}} + \bo{B} \mathbf u + \bo{L}(\mathbf y - \bo{C} \hat{\bo{x}})  + \bo{c} \\
+% \bo{y} = \bo{C} \bo{x} \\
+% \bo{u} = -\bo{K} (\hat{\bo{x}} - \bo{x}^*(t)) + \bo{u}^*(t)
+% \end{cases}
+% \end{equation}
+
+% \bigskip
+
+% where $\bo{A} - \bo{B} \bo{K} < 0$ and $\bo{A}^{\top} - 
+% \bo{c}^{\top} \bo{L}^{\top} < 0$.
+
+
+% \end{flushleft}
+% \end{frame}
 
 
 
