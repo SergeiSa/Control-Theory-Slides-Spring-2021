@@ -130,7 +130,7 @@ Let us consider autonomous dynamical system
 \end{cases}
 \end{equation}
 %
-with measurements $\bo{y}$. We want to get as good estimate of the state $\hat{\bo{x}}$ as we can.
+with measurements $\bo{y}$. We want to get as good an estimate of the state $\hat{\bo{x}}$ as we can.
 
 \bigskip
 
@@ -139,9 +139,7 @@ First note: dynamics should also hold for our observed state:
 \hat{\dot {\bo{x}}} = \bo{A} \hat{\bo{x}} + \bo{B} \bo{u}
 \end{equation}
 %
-Therefore if we know the initial conditions of our system exactly, and we know our model exactly, we can find exact state of the system without using measurement $\Tilde{\mathbf y}$. 
-
-This we can call open loop observation. Unfortunately, we never know neither model nor initial conditions exactly.
+Therefore if we know the initial conditions of our system exactly, and we know our model exactly, we can find exact state of the system without using measurement $\bo{y}$. We can call it an open loop observation. Unfortunately, we know neither the model nor the initial conditions precisely.
 
 
 \end{flushleft}
@@ -455,8 +453,9 @@ As long as the observer and the controller are stable independently, the overall
 \bigskip
 \centerline{You can help improve these slides at:}
 \centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
-\bigskip
-\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+
+\includegraphics[width=1.6in]{qrcode.png}\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+
 \end{frame}
 
 \end{document}
