@@ -36,6 +36,7 @@
 ...
 
 * Lecture 8 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/lecture8_LyapunovEq.ipynb
+* Lecture 10 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_10_observers.ipynb
 
 # For contributors
 
