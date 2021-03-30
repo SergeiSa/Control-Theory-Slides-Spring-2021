@@ -189,11 +189,11 @@ Let's define state estimation error as $\varepsilon = \hat{\bo{x}} - \bo{x}$. We
 \begin{flushleft}
 
 The observer $\dot {\varepsilon}= 
-(\bo{A} - \bo{L} \bo{C}) \varepsilon$ is \emph{stable} (i.e., the state estimation error tends to zero), as long as the following matrix is negative-definite:
+(\bo{A} - \bo{L} \bo{C}) \varepsilon$ is \emph{stable} (i.e., the state estimation error tends to zero), as long as the following matrix has eigenvalues with negative real parts:
 
 \[
 \bo{A} - 
-\bo{L} \bo{c} < 0
+\bo{L} \bo{C} < 0
 \]
 
 We need to find $\bo{L}$. Let us observe the key difference between observer design and controller design:
@@ -202,7 +202,7 @@ We need to find $\bo{L}$. Let us observe the key difference between observer des
 
 \begin{itemize}
     \item Controller design: find such $\bo{K}$ that $\bo{A} - \bo{B} \bo{K} < 0$.
-    \item Observer design: find such $\bo{L}$ that: $\bo{A} - \bo{L} \bo{c} < 0$
+    \item Observer design: find such $\bo{L}$ that: $\bo{A} - \bo{L} \bo{C} < 0$
 \end{itemize}
 
 \bigskip
@@ -217,8 +217,8 @@ We have instruments for finding $\bo{K}$, what about $\bo{L}$?
 \framesubtitle{General case: design via Riccati eq.}
 \begin{flushleft}
 
-In general, we can observe that if $\bo{A} - \bo{L} \bo{c}$ is negative-definite, then $(\bo{A} - 
-\bo{L} \bo{c})^{\top}$ is negative-definite too (by definition of the negative-definiteness). 
+In general, we can observe that if $\bo{A} - \bo{L} \bo{C}$ is negative-definite, then $(\bo{A} - 
+\bo{L} \bo{C})^{\top}$ is negative-definite too (by definition of the negative-definiteness). 
 
 \bigskip
 
@@ -226,7 +226,7 @@ Therefore, we can solve the following \emph{dual problem}:
 
 \begin{itemize}
     \item find such $\bo{L}$ that $\bo{A}^{\top} - 
-\bo{c}^{\top} \bo{L}^{\top} < 0$.
+\bo{C}^{\top} \bo{L}^{\top} < 0$.
 \end{itemize}
 
 \bigskip
@@ -235,7 +235,7 @@ The dual problem is \emph{equivalent} to the control design problem. We can solv
 
 \bigskip
 
-$\bo{L}^{\top}$ \texttt{= lqr}($\bo{A}^{\top}$, $\bo{c}^{\top}$, $\mathbf Q$, $\mathbf R$).
+$\bo{L}^{\top}$ \texttt{= lqr}($\bo{A}^{\top}$, $\bo{C}^{\top}$, $\mathbf Q$, $\mathbf R$).
 
 where $\mathbf Q$ and $\mathbf R$ are weight  matrices, determining the "sensitivity" or "aggressiveness" of the observer.
 
@@ -264,7 +264,7 @@ Thus we get dynamics+observer combination:
 \bigskip
 
 where $\bo{A} - \bo{B} \bo{K} < 0$ and $\bo{A}^{\top} - 
-\bo{c}^{\top} \bo{L}^{\top} < 0$.
+\bo{C}^{\top} \bo{L}^{\top} < 0$.
 
 
 \end{flushleft}
@@ -455,6 +455,7 @@ As long as the observer and the controller are stable independently, the overall
 \centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
 
 \includegraphics[width=1.6in]{qrcode.png}\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\bigskip
 
 \end{frame}
 
