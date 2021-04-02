@@ -80,6 +80,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/Observer/
 
+      - name: Compile LaTeX document ControllabilityObservability
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/ControllabilityObservability/
+
 
 
 
@@ -147,6 +153,12 @@ jobs:
           name: Observer.pdf
           path: Slides/Observer/main.pdf
 
+      - name: Save ControllabilityObservability artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ControllabilityObservability.pdf
+          path: Slides/ControllabilityObservability/main.pdf
+
 
 
 
@@ -165,6 +177,7 @@ jobs:
           git add Slides/LyapunovTheory/main.pdf
           git add Slides/HJB_LQR/main.pdf
           git add Slides/Observer/main.pdf
+          git add Slides/ControllabilityObservability/main.pdf
 
 
 
