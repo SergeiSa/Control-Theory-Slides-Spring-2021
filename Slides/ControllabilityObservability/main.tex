@@ -1,0 +1,310 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Controllability, Observability}
+\subtitle{Control Theory, Lecture 11}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+\begin{itemize}
+\item Controllability of Discrete LTI
+\begin{itemize}
+    \item Controllability matrix
+    \item Controllability criterion
+\end{itemize}
+\item Observability of Discrete LTI
+\begin{itemize}
+    \item Dual system
+    \item Observability criterion
+\end{itemize}
+\item ”Unlimited control”
+\item Limited control
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Controllability of Discrete LTI}
+% \framesubtitle{Definitions}
+\begin{flushleft}
+
+Consider discrete LTI:
+\begin{equation}
+\bo{x}_{i+1} = \bo{A}  \bo{x}_i + \bo{B} \bo{u}_i
+\end{equation}
+
+Assume the initial state is $\bo{x}_1$. Then we can deduce that:
+
+\begin{align*}
+\bo{x}_2 &= \bo{A} \bo{x}_1 + \bo{B} \bo{u}_1 \\
+\bo{x}_3 &= \bo{A} \bo{x}_2 + \bo{B} \bo{u}_2 = \bo{A} (\bo{A} \bo{x}_1 + \bo{B} \bo{u}_1) + \bo{B} \bo{u}_2 \\
+\bo{x}_4 &= \bo{A} \bo{x}_3 + \bo{B} \bo{u}_3 = \bo{A} (\bo{A} (\bo{A} \bo{x}_1 + \bo{B} \bo{u}_1) + \bo{B} \bo{u}_2) + \bo{B} \bo{u}_3 \\
+... \\
+\bo{x}_{n+1} &= \bo{A}^n \bo{x}_1 + ... + 
+\bo{A}^{n - k} \bo{B} \bo{u}_{k} + ... + 
+\bo{B} \bo{u}_n
+\end{align*}
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Controllability of Discrete LTI}
+\framesubtitle{Controllability matrix}
+\begin{flushleft}
+
+Equation $\bo{x}_{n+1} = \bo{A}^n \bo{x}_1 + ... 
++ \bo{A}^{n - k} \bo{B} \bo{u}_{k} + ...
+\bo{B} \bo{u}_n$ can be re-written as:
+
+\begin{equation}
+    \bo{x}_{n+1} - \bo{A}^n \bo{x}_1 = 
+    \begin{bmatrix}
+    \bo{B} &
+    \bo{A} \bo{B} &
+    \bo{A}^2 \bo{B} & ... &
+    \bo{A}^{n - 1} \bo{B}
+    \end{bmatrix}    
+    \begin{bmatrix}
+    \bo{u}_{k} \\
+    \bo{u}_{k-1} \\
+    \bo{u}_{k-2} \\ ... \\
+    \bo{u}_{1}
+    \end{bmatrix}
+\end{equation}
+
+Notice that in order for the system to go from $\bo{x}_1$ to $\bo{x}_{n+1}$, it needs be in the column space of $\begin{bmatrix}
+    \bo{B} &
+    \bo{A} \bo{B} & ... &
+    \bo{A}^{n - 1} \bo{B}
+    \end{bmatrix}$.
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Controllability of Discrete LTI}
+\framesubtitle{Controllability criterion}
+\begin{flushleft}
+
+\begin{block}{Controllability}
+For a system $\bo{x}_{i+1} = \bo{A}  \bo{x}_i + \bo{B} \bo{u}_i$, where $\bo{x} \in \R^n$, if the matrix $\mathcal{B} = \begin{bmatrix}
+    \bo{B} &
+    \bo{A} \bo{B} & ... &
+    \bo{A}^{n - 1} \bo{B}
+    \end{bmatrix}$ is full row rank (i.e. $\text{rank}(\mathcal{B}) = n$), any state can be reached, which means that \emph{the system is controllable}.
+\end{block}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Observability of Discrete LTI}
+% \framesubtitle{Definitions}
+\begin{flushleft}
+
+Consider discrete LTI:
+\begin{equation}
+\begin{cases}
+\bo{x}_{i+1} = \bo{A}  \bo{x}_i + \bo{B} \bo{u}_i \\
+\bo{y}_i     = \bo{C}  \bo{x}_i
+\end{cases}
+\end{equation}
+
+And an observer:
+
+\begin{equation}
+\hat{\bo{x}}_{i+1} = \bo{A}  \hat{\bo{x}}_i + \bo{B} \bo{u}_i + 
+\bo{L} (\bo{y}_i - \bo{C} \hat{\bo{x}}_i)
+\end{equation}
+
+Remember that we can define observation error $\bo{e}_i = \hat{\bo{x}}_i - \bo{x}_i$ and white its dynamics:
+
+\begin{equation}
+\bo{e}_{i+1} = \bo{A} \bo{e}_i - 
+\bo{L} \bo{C} \bo{e}_i
+\end{equation}
+
+Dual system (which is stable if and only if the original is stable), has form:
+
+\begin{equation}
+\varepsilon_{i+1} = \bo{A}^\top \varepsilon_i - 
+\bo{C}^\top \bo{L}^\top \varepsilon_i
+\end{equation}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Observability of Discrete LTI}
+\framesubtitle{Dual system}
+\begin{flushleft}
+
+Dynamical system $\varepsilon_{i+1} = \bo{A}^\top \varepsilon_i - \bo{C}^\top \bo{L}^\top \varepsilon_i$, we can be represented as:
+
+\begin{equation}
+\begin{cases}
+\varepsilon_{i+1} = \bo{A}^\top \varepsilon_i + \bo{C}^\top \bo{v}_i \\
+\bo{v}_i = - \bo{L}^\top \varepsilon_i
+\end{cases}
+\end{equation}
+
+Controllability matrix of this system is:
+
+\begin{equation}
+\mathcal{C}^\top = \begin{bmatrix}
+    \bo{C}^\top &
+    (\bo{A}^\top) \bo{C}^\top & ... &
+    (\bo{A}^\top)^{n - 1} \bo{C}^\top
+    \end{bmatrix}
+\end{equation}
+
+It is easier to represent this matrix in its transposed form:
+
+\begin{equation}
+\mathcal{C} = \begin{bmatrix}
+    \bo{C} \\
+    \bo{C}\bo{A}  \\ ... \\
+    \bo{C}\bo{A}^{n - 1}
+    \end{bmatrix}
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+\begin{frame}{Observability of Discrete LTI}
+\framesubtitle{Observability criterion}
+\begin{flushleft}
+
+\begin{block}{Observability}
+For a system $\bo{x}_{i+1} = \bo{A}  \bo{x}_i + \bo{B} \bo{u}_i$ and $\bo{y}_i = \bo{C}  \bo{x}_i$, where $\bo{x} \in \R^n$, if the matrix $\mathcal{C} = \begin{bmatrix}
+    \bo{C} \\
+    \bo{C}\bo{A}  \\ ... \\
+    \bo{C}\bo{A}^{n - 1}
+    \end{bmatrix}$ is full column rank (i.e. $\text{rank}(\mathcal{C}) = n$), observation error can go to zero from any initial position, which means that \emph{the system is observable}.
+\end{block}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Control}
+\framesubtitle{"Unlimited control", part 1}
+\begin{flushleft}
+
+Let's look at this equation one more time:
+
+\begin{equation}
+    \bo{x}_{n+1} - \bo{A}^n \bo{x}_1 = 
+    \begin{bmatrix}
+    \bo{B} &
+    \bo{A} \bo{B} &
+    \bo{A}^2 \bo{B} & ... &
+    \bo{A}^{n - 1} \bo{B}
+    \end{bmatrix}    
+    \begin{bmatrix}
+    \bo{u}_{k} \\
+    \bo{u}_{k-1} \\
+    \bo{u}_{k-2} \\ ... \\
+    \bo{u}_{1}
+    \end{bmatrix}
+\end{equation}
+
+If the system is controllable, it means \emph{every state can be reached from any other space in only $n$ steps}. This seem to disagree with our real-world experience.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Control}
+\framesubtitle{"Unlimited control", part 2}
+\begin{flushleft}
+
+Let's look at an even simpler equation $\bo{x}_{i+1} = \bo{A}  \bo{x}_i + \bo{B} \bo{u}_i$. Let's rewrite the equation as follows:
+
+\begin{equation}
+\bo{x}_f - \bo{A} \bo{x}_1 = \bo{B} \bo{u}_1
+\end{equation}
+
+As long as $\bo{x}_f - \bo{A} \bo{x}_1$ lies in the column space of $\bo{B}$, it \emph{can be achieved in a single step}, using control:
+
+\begin{equation}
+\bo{u}_1 = \bo{B}^+ (\bo{x}_f - \bo{A} \bo{x}_1)
+\end{equation}
+
+This as well, seem to disagree with our real-world experience.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Limited control}
+% \framesubtitle{Limited control}
+\begin{flushleft}
+
+In the actual engineering reality we often have to deal with equations, that look closer to:
+
+\begin{equation}
+\begin{cases}
+\bo{x}_{i+1} = \bo{A}  \bo{x}_i + \bo{B} \bo{u}_i \\
+|| \bo{D} \bo{u}_i ||_r \leq 1
+\end{cases}
+\end{equation}
+
+... which is a \emph{second-order cone program}. Or:
+
+\begin{equation}
+\begin{cases}
+\bo{x}_{i+1} = \bo{A}  \bo{x}_i + \bo{B} \bo{u}_i \\
+\bo{D} \bo{u}_i \leq \bo{d}
+\end{cases}
+\end{equation}
+
+... which is a \emph{quadratic program}. Notice, those equations \emph{can't be solved analytically}.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{
+\textcolor{blue}{\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}}}
+
+\bigskip
+
+\textcolor{black}{\qrcode[height=1.5in]{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+
+\bigskip
+
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}
