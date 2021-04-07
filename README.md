@@ -112,7 +112,12 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 ## Lecture 9 LQR
 * Linear Quadratic Regulators - http://underactuated.mit.edu/lqr.html
 
+## Lecture 10 Observers
 
+## Lecture 11 Cntrollability, Observability
+
+* Invariant subspaces, Sylvester equation, PBH https://stanford.edu/class/ee363/sessions/s2notes.pdf
+* EE363 Winter 2008-09 Lecture 6 Invariant subspaces https://web.stanford.edu/class/ee363/lectures/inv-sub.pdf
 
 ## Other
 
