@@ -23,6 +23,7 @@
 * Lecture 7 - https://youtu.be/VS0NC_a8kQY
 * Lecture 8 - https://youtu.be/FIGE0Cyi55g
 * Lecture 10 - https://youtu.be/BhcDmOQjdGo
+* Lecture 11 - https://youtu.be/bpNQWrEUZY0
 
 # Labs
 
