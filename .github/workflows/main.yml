@@ -83,6 +83,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/ControllabilityObservability/
 
+      - name: Compile LaTeX document Linearization
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Linearization/
+
 
 
 
@@ -156,6 +162,12 @@ jobs:
           name: ControllabilityObservability.pdf
           path: Slides/ControllabilityObservability/main.pdf
 
+      - name: Save Linearization artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Linearization.pdf
+          path: Slides/Linearization/main.pdf
+
 
 
 
@@ -175,6 +187,7 @@ jobs:
           git add Slides/HJB_LQR/main.pdf
           git add Slides/Observer/main.pdf
           git add Slides/ControllabilityObservability/main.pdf
+          git add Slides/Linearization/main.pdf
 
 
 

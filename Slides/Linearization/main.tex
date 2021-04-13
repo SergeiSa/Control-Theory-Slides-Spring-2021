@@ -1,0 +1,267 @@
+\documentclass{beamer}
+
+\input{settings.tex}
+
+
+\title{Manipulator equations, Linearization}
+\subtitle{Control Theory, Lecture 12}
+\author{by Sergei Savin}
+\centering
+\date{Spring 2021}
+
+
+
+\begin{document}
+\maketitle
+
+
+\begin{frame}{Content}
+\begin{itemize}
+\item Controllability of Discrete LTI
+% \begin{itemize}
+%     \item Controllability matrix
+%     \item Controllability criterion
+% \end{itemize}
+% \item Observability of Discrete LTI
+% \begin{itemize}
+%     \item Dual system
+%     \item Observability criterion
+% \end{itemize}
+% \item ”Unlimited control”
+% \item Limited control
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Newton eq., Lagrange eq.}
+% \framesubtitle{Definitions}
+\begin{flushleft}
+
+In classical mechanics, \emph{Newton equations} are accepted as an axiom and are given (for a system of points):
+
+\begin{equation}
+\label{eq:Newton}
+    m_i\ddot{\bo{r}}_i = \bo{f}_i, \ \ i = 1, \ ... \ m  
+\end{equation}
+
+where $m_i$ are masses of the particles, $\bo{r}_i$ are their positions, and $\bo{f}_i$ are forces acting on them.
+
+\bigskip
+
+From it, there is a way to derive \emph{Lagrange equations}:
+
+\begin{equation}
+\label{eq:Lagrange}
+    \frac{d}{dt} \bigg( 
+    \frac{\partial T }{\partial \dot{\bo{q}}}
+    \bigg) - 
+    \frac{\partial T }{\partial \bo{q}} = \tau
+\end{equation}
+
+where kinetic energy $T$ is defined as: $T = 0.5 \dot{\bo{r}} ^\top \bo{M} \dot{\bo{r}}$, $\bo{q}$ are generalized coordinates, and $\tau$ are generalized forces.
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Manipulator eq.}
+% \framesubtitle{Definitions}
+\begin{flushleft}
+
+Lagrange equations are useful when modelling a system of rigid bodies connected via \emph{joints}. Examples include robot arms, walking robots and others. However, there is an even more useful form of these equations, called \emph{manipulator equations}:
+
+\begin{equation}
+    \bo{H} \ddot{\bo{q}} + \bo{C} \dot{\bo{q}} + \bo{g} = \tau_n
+\end{equation}
+
+where $\bo{H} = \bo{H}(\bo{q})$ is a generalized inertia matrix, $\bo{C} = \bo{C}(\bo{q}, \dot{\bo{q}})$ is inertial force matrix, $\bo{g} = \bo{g}(\bo{q})$ is generalized gravity and other conservative forces, and $\tau_n$ are generalized non-conservative forces, such as control inputs (motor torques, etc.)
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Linear control for nonlinear systems}
+\framesubtitle{Idea}
+\begin{flushleft}
+
+Consider the following problem: given $\bo{H} \ddot{\bo{q}} + \bo{C} \dot{\bo{q}} + \bo{g} = \tau_n$, design control law that would stabilize the system at the origin.
+
+\bigskip
+
+\begin{block}{Linearization}
+One of the ways to think about this problem is to imagine that if there existed a linear system, that behaves exactly like the original system in the vicinity of the origin, we could stabilize the linear one and then use the found control law to stabilize the non-linear version.
+\end{block}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Linear control for nonlinear systems}
+\framesubtitle{Linearization}
+\begin{flushleft}
+
+In general, for a system of the form $\dot{\bo{x}} = \bo{f}(\bo{x}, \bo{u})$, there is a simple way to linearize it around any given point. The process if based on Taylor expansion:
+
+\begin{equation}
+    \bo{f}(\bo{x}, \bo{u}) 	\sim \bo{f}(\bo{x}_0, \bo{u}_0) +
+    \frac{\partial \bo{f}}{\partial \bo{x}} (\bo{x} - \bo{x}_0) + 
+    \frac{\partial \bo{f}}{\partial \bo{u}} (\bo{u} - \bo{u}_0)
+\end{equation}
+
+Denoting $\frac{\partial \bo{f}}{\partial \bo{x}} = \bo{A}$ and $\frac{\partial \bo{f}}{\partial \bo{u}} = \bo{B}$, we get:
+
+\begin{equation}
+    \bo{f}(\bo{x}, \bo{u}) 	\sim \bo{f}(\bo{x}_0, \bo{u}_0) +
+    \bo{A} (\bo{x} - \bo{x}_0) + 
+    \bo{B} (\bo{u} - \bo{u}_0)
+\end{equation}
+
+Finally, denoting $ \bo{f}(\bo{x}_0, \bo{u}_0) - \bo{A}\bo{x}_0 - \bo{B} \bo{u}_0 = \bo{c}$ we achieve local linearization of the nonlinear dynamics:
+
+\begin{equation}
+    \dot{\bo{x}} \sim \bo{A} \bo{x} + 
+    \bo{B} \bo{u} + \bo{c}
+\end{equation}
+
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Linear control for nonlinear systems}
+\framesubtitle{Linearization of manipulator eq,}
+\begin{flushleft}
+
+We, on the other hand, have eq. in the form $\bo{H} \ddot{\bo{q}} + \bo{C} \dot{\bo{q}} + \bo{g} = \tau_n$. Let us assume $\tau_n = \bo{T}\bo{u}$, where $\bo{T} = \bo{T}(\bo{q})$. We can also define $\bo{x}$:
+
+\begin{equation}
+    \bo{x} = \begin{bmatrix}
+    \bo{q} \\ \dot{\bo{q}} \end{bmatrix}
+\end{equation}
+
+Then our attempt to write system of first order diff. eq. gives us:
+
+\begin{equation}
+    \frac{d}{dt} 
+    \left(
+    \begin{bmatrix}
+    \bo{q} \\ \dot{\bo{q}} 
+    \end{bmatrix}
+    \right)
+    =
+    \begin{bmatrix}
+    \dot{\bo{q}}  \\ 
+    \bo{H}^{-1} (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g}) 
+    \end{bmatrix}
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Linear control for nonlinear systems}
+\framesubtitle{State matrix}
+\begin{flushleft}
+
+In this case, state matrix $\bo{A}$ becomes:
+
+\begin{equation}
+    \bo{A} = 
+    \begin{bmatrix}
+    0 & \bo{I} \\
+    \frac{\partial (\bo{H}^{-1} (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g}) )}{\partial \bo{q}} 
+    &
+    \frac{\partial (\bo{H}^{-1} (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g}) )}{\partial \dot{\bo{q}}}
+    \end{bmatrix}
+\end{equation}
+
+Let us expand:
+
+\begin{equation}
+    \frac{\partial }{\partial \bo{q}} (\bo{H}^{-1} (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g}) ) 
+    = 
+    \frac{\partial \bo{H}^{-1}}{\partial \bo{q}} (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g})
+    + 
+    \bo{H}^{-1} 
+    \frac{\partial }{\partial \bo{q}} 
+    (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g}) )
+\end{equation}
+
+\begin{equation}
+    \frac{\partial \bo{H}^{-1}}{\partial \bo{q}} = 
+    - \bo{H}^{-1} \frac{\partial \bo{H}}{\partial \bo{q}} 
+    \bo{H}^{-1}
+\end{equation}
+
+\end{flushleft}
+\end{frame}
+
+
+
+
+\begin{frame}{Linear control for nonlinear systems}
+\framesubtitle{State matrix, Control matrix}
+\begin{flushleft}
+
+...and:
+
+\begin{equation}
+\frac{\partial (\bo{H}^{-1} (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g}) )}{\partial \dot{\bo{q}}} 
+= 
+-\bo{H}^{-1}\bo{C} - \bo{H}^{-1} 
+\frac{\partial \bo{C}}{\partial \dot{\bo{q}}}  \dot{\bo{q}}
+\end{equation}
+
+Control matrix $\bo{B}$ becomes:
+
+\begin{equation}
+    \bo{B} = 
+    \begin{bmatrix}
+    0 & 0 \\
+    \frac{\partial (\bo{H}^{-1} (\bo{T}\bo{u} -  \bo{C} \dot{\bo{q}} - \bo{g}) )}{\partial \bo{u}} 
+    &
+    0
+    \end{bmatrix}
+    =
+        \begin{bmatrix}
+    0 & 0 \\
+    \bo{H}^{-1} \bo{T}
+    &
+    0
+    \end{bmatrix}
+\end{equation}
+
+...and this does not look very clean and nice to use. Indeed, it is not easy or nice in practice.
+
+\end{flushleft}
+\end{frame}
+
+
+
+\begin{frame}{Thank you!}
+\centerline{Lecture slides are available via Moodle.}
+\bigskip
+\centerline{You can help improve these slides at:}
+\centerline{
+\textcolor{blue}{\centerline{\href{https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021}{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}}}
+
+\bigskip
+
+\textcolor{black}{\qrcode[height=1.5in]{github.com/SergeiSa/Control-Theory-Slides-Spring-2021}}
+
+\bigskip
+
+\centerline{Check Moodle for additional links, videos, textbook suggestions.}
+\end{frame}
+
+\end{document}
