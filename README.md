@@ -11,6 +11,7 @@
 * Lecture 9 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/HJB_LQR
 * Lecture 10 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Observer
 * Lecture 11 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/ControllabilityObservability
+* Lecture 12 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Linearization
 
 # Lecture videos 
 
@@ -24,6 +25,7 @@
 * Lecture 8 - https://youtu.be/FIGE0Cyi55g
 * Lecture 10 - https://youtu.be/BhcDmOQjdGo
 * Lecture 11 - https://youtu.be/bpNQWrEUZY0
+* Lecture 12 - version 1: https://youtu.be/q_WRiwkgnGU version 2: 
 
 # Labs
 
@@ -40,6 +42,7 @@
 * Lecture 8 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/lecture8_LyapunovEq.ipynb
 * Lecture 10 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_10_observers.ipynb
 * Lecture 11 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_11_controllability_observability.ipynb
+* Wrap-up    - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_12_design_example.ipynb
 
 # For contributors
 
