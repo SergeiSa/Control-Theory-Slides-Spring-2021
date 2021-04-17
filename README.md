@@ -25,7 +25,7 @@
 * Lecture 8 - https://youtu.be/FIGE0Cyi55g
 * Lecture 10 - https://youtu.be/BhcDmOQjdGo
 * Lecture 11 - https://youtu.be/bpNQWrEUZY0
-* Lecture 12 - version 1: https://youtu.be/q_WRiwkgnGU version 2: 
+* Lecture 12 - version 1: https://youtu.be/q_WRiwkgnGU version 2: https://youtu.be/6K9B8EWCIzw
 
 # Labs
 
