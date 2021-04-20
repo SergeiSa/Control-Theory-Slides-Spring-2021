@@ -89,6 +89,12 @@ jobs:
           root_file: main.tex
           working_directory: Slides/Linearization/
 
+      - name: Compile LaTeX document Constrained
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          working_directory: Slides/Constrained/
+
 
 
 
@@ -168,6 +174,12 @@ jobs:
           name: Linearization.pdf
           path: Slides/Linearization/main.pdf
 
+      - name: Save Constrained artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Constrained.pdf
+          path: Slides/Constrained/main.pdf
+
 
 
 
@@ -188,6 +200,7 @@ jobs:
           git add Slides/Observer/main.pdf
           git add Slides/ControllabilityObservability/main.pdf
           git add Slides/Linearization/main.pdf
+          git add Slides/Constrained/main.pdf
 
 
 
