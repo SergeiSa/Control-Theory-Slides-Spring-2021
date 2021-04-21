@@ -12,6 +12,7 @@
 * Lecture 10 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Observer
 * Lecture 11 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/ControllabilityObservability
 * Lecture 12 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Linearization
+* Lecture 13 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/tree/main/Slides/Constrained
 
 # Lecture videos 
 
