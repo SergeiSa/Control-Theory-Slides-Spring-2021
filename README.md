@@ -32,20 +32,29 @@
 
 # Labs
 
-* Assignment / lab / submission / gradable item \# 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/Lab2_Control2021.pdf
+* Assignment / lab / submission / gradable item \# 1: 
+* * (colab) https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/Lab1_Control2021.ipynb
+* Assignment / lab / submission / gradable item \# 2:
+* * (colab) https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/Lab2_Control2021.ipynb
+* * (PDF) https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/Lab2_Control2021.pdf
+* Assignment / lab / submission / gradable item \# 3:
+* * (colab) https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/Lab_3.ipynb
 
 # Self-study with Colab
 
-* Lecture 1 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice1_StateSpace_transformation_simulation.ipynb
-* Lecture 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice2_LTI_Stability.ipynb
-* Lecture 3 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice3_transfer_functions.ipynb
+* Practice 1 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_01_StateSpace_transformation_simulation.ipynb
+* Practice 2 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_02_LTI_Stability.ipynb
+* Practice 3 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_03_transfer_functions.ipynb
+* Practice 4 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_04_basics_of_control.ipynb
+* Practice 5 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_05_reg_tracking.ipynb
+* Practice 6 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_06_discrete_systems.ipynb
+* Practice 7 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_07_ffs_svd.ipynb
+* Practice 8 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_08_la_applications.ipynb
+* Practice 9 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_09_lyapunov_functions.ipynb
+* Practice 10 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_10_observers.ipynb
+* Practice 11 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_11_controllability_observability.ipynb
+* Practice 12 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_12_design_example.ipynb
 
-...
-
-* Lecture 8 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/lecture8_LyapunovEq.ipynb
-* Lecture 10 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_10_observers.ipynb
-* Lecture 11 - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_11_controllability_observability.ipynb
-* Wrap-up    - https://github.com/SergeiSa/Control-Theory-Slides-Spring-2021/blob/main/ColabNotebooks/practice_12_design_example.ipynb
 
 # For contributors
 
@@ -55,7 +64,7 @@ The changes in lecture slides are going through an automated check.
 
 The PDFs are compiled and updated automatically when PR is merged (thanks to k1rill-fedoseev from the 2020 Linear Control class!). You don't need to update them manually. They are also uploaded as workflow artifacts for every new commit pushed into this repository. You can use them to see your changes.
  
-Consider adding \*.pdf to the .git/info/exclude file on your local repo. Here is the ~~overy long but helpful~~ [description why it works](https://medium.com/@dave_lunny/exclude-files-from-git-without-committing-changes-to-gitignore-986fa712e78d)
+Consider adding \*.pdf to the .git/info/exclude file on your local repo. Here is the ~~overy long but helpful~~ [description why it works](https://medium.com/@dave_lunny/exclude-files-from-git-without-committing-changes-to-gitignore-986fa712e78d).
 
 # Book suggestions
 
@@ -121,6 +130,7 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 * Linear Quadratic Regulators - http://underactuated.mit.edu/lqr.html
 
 ## Lecture 10 Observers
+* https://www.dynsyslab.org/archive/RecEst2011/www.idsc.ethz.ch/Courses/Archives/Recursive_Estimation/recursive_estimation_2011/LectureNotes/RE_Lecture11_v1.pdf
 
 ## Lecture 11 Cntrollability, Observability
 
