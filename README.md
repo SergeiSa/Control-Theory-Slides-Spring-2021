@@ -130,12 +130,13 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 
 ## Lecture 9 LQR
 * (Underactuated Robotics) Linear Quadratic Regulators - http://underactuated.mit.edu/lqr.html
-* (CS 287: Advanced Robotics, Fall 2015) LQR as interative procedure - https://people.eecs.berkeley.edu/~pabbeel/cs287-fa15/slides/lecture5-LQR.pdf
+* (CS 287: Advanced Robotics, Fall 2015) infinite horizon discrete LQR as an interative procedure, linear and affine cases, LTI and LTV cases - https://people.eecs.berkeley.edu/~pabbeel/cs287-fa15/slides/lecture5-LQR.pdf
 
 ## Lecture 10 Observers
 * https://www.dynsyslab.org/archive/RecEst2011/www.idsc.ethz.ch/Courses/Archives/Recursive_Estimation/recursive_estimation_2011/LectureNotes/RE_Lecture11_v1.pdf
+* MAE598 (LMIs in Control) - The Luenberger Observer Framework - https://youtu.be/eSY8Fwp2dQo
 
-## Lecture 11 Cntrollability, Observability
+## Lecture 11 Controllability, Observability
 
 * Invariant subspaces, Sylvester equation, PBH https://stanford.edu/class/ee363/sessions/s2notes.pdf
 * EE363 Winter 2008-09 Lecture 6 Invariant subspaces https://web.stanford.edu/class/ee363/lectures/inv-sub.pdf
@@ -150,8 +151,6 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 ### Optimal Control of LTI systems
  * (Underactuated Robotics) Continuous dynamic programming.
    [Link](http://underactuated.csail.mit.edu/dp.html#section3)
- * (Underactuated Robotics) Linear Quadratic Regulators
-   [Link](http://underactuated.csail.mit.edu/lqr.html)
  * Control theory by S. Simrock - section 8:
 https://cds.cern.ch/record/1100534/files/p73.pdf
 
