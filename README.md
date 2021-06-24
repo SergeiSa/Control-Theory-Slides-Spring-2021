@@ -87,7 +87,7 @@ http://tutorial.math.lamar.edu/Classes/DE/SystemsDE.aspx
 http://tutorial.math.lamar.edu/Classes/DE/SolutionsToSystems.aspx
 * Astolfi, A., 2006. Systems and Control Theory: An Introduction. Imperial College London lecture notes. - 2.3.1 Linear systems (on equilibrioum of linear systems):
 http://www3.imperial.ac.uk/pls/portallive/docs/1/31851696.PDF
-* MAE598 (LMIs in Control, Stability and Eigenvalues): Stability for LTI via Jordan block representation -  https://youtu.be/8zYOJbpiT38
+* Stability for LTI via Jordan block representation (MAE598, LMIs in Control, Stability and Eigenvalues) - https://youtu.be/8zYOJbpiT38
 
 
 ## Lecture 3. Transfer functions
@@ -99,6 +99,9 @@ http://www3.imperial.ac.uk/pls/portallive/docs/1/31851696.PDF
   * 8.3 Transfer Functions
 * Control theory by S. Simrock - sections 2, 3 and 4:
 https://cds.cern.ch/record/1100534/files/p73.pdf
+* (Advanced) Systems and signals - backgrund information for block diagrams (MAE598, LMIs in Control) - https://youtu.be/PM5tDcWEZgk
+* (Advanced) Laplace transform and H-norms (MAE598, LMIs in Control) - https://youtu.be/aL8PG8H1dp8
+* (Advanced) Proper transfer functions, KYP Lemma (MAE598, LMIs in Control) - https://youtu.be/H-673uXX9FI
 
 
 ## Lecture 4. Stabilizing control
@@ -121,12 +124,12 @@ http://www3.imperial.ac.uk/pls/portallive/docs/1/31851696.PDF
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-dynamic-systems-and-control-spring-2011/readings/MIT6_241JS11_chap10.pdf
 
 ## Lecture 6, 7 - Fundamental subspaces, Projectors.
-* MAE598 (LMIs in Control, Subspaces) https://youtu.be/eAHq4bTiMnA?t=2086 (jump to 34:00)
+* Subspaces (MAE598, LMIs in Control) - https://youtu.be/eAHq4bTiMnA?t=2086 (jump to 34:00)
 
 ## Lecture 8 Lyapunov Theory 
 * 3.9 Liapunov’s direct method - https://folk.uib.no/nmagb/m2142002l3.pdf
 * Universita degli studi di Padova Dipartimento di Ingegneria dell'Informazione, Nicoletta Bof, Ruggero Carli, Luca Schenato, Technical Report, Lyapunov Theory for Discrete Time Systems - https://arxiv.org/abs/1809.05289
-* MAE598 (LMIs in Control): Lyapunov Theory - https://youtu.be/cB_1_eIdqqM
+* Lyapunov Theory (MAE598, LMIs in Control) - https://youtu.be/cB_1_eIdqqM
 
 ## Lecture 9 LQR
 * (Underactuated Robotics) Linear Quadratic Regulators - http://underactuated.mit.edu/lqr.html
@@ -134,13 +137,13 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 
 ## Lecture 10 Observers
 * https://www.dynsyslab.org/archive/RecEst2011/www.idsc.ethz.ch/Courses/Archives/Recursive_Estimation/recursive_estimation_2011/LectureNotes/RE_Lecture11_v1.pdf
-* MAE598 (LMIs in Control) - The Luenberger Observer Framework - https://youtu.be/eSY8Fwp2dQo
+* The Luenberger Observer Framework (MAE598, LMIs in Control) - https://youtu.be/eSY8Fwp2dQo
 
 ## Lecture 11 Controllability, Observability
 
 * Invariant subspaces, Sylvester equation, PBH https://stanford.edu/class/ee363/sessions/s2notes.pdf
 * EE363 Winter 2008-09 Lecture 6 Invariant subspaces https://web.stanford.edu/class/ee363/lectures/inv-sub.pdf
-* MAE598 (LMIs in Control, Controllability) https://youtu.be/eAHq4bTiMnA?t=1529 (jump to 25:00)
+* Controllability (MAE598, LMIs in Control) - https://youtu.be/eAHq4bTiMnA?t=1529 (jump to 25:00)
 
 ## Other
 
