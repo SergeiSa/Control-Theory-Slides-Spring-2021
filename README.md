@@ -136,7 +136,7 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 * (CS 287: Advanced Robotics, Fall 2015) infinite horizon discrete LQR as an interative procedure, linear and affine cases, LTI and LTV cases - https://people.eecs.berkeley.edu/~pabbeel/cs287-fa15/slides/lecture5-LQR.pdf
 
 ## Lecture 10 Observers
-* https://www.dynsyslab.org/archive/RecEst2011/www.idsc.ethz.ch/Courses/Archives/Recursive_Estimation/recursive_estimation_2011/LectureNotes/RE_Lecture11_v1.pdf
+*  Observers and the Separation Principle - https://www.dynsyslab.org/archive/RecEst2011/www.idsc.ethz.ch/Courses/Archives/Recursive_Estimation/recursive_estimation_2011/LectureNotes/RE_Lecture11_v1.pdf
 * The Luenberger Observer Framework (MAE598, LMIs in Control) - https://youtu.be/eSY8Fwp2dQo
 
 ## Lecture 11 Controllability, Observability
