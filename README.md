@@ -163,6 +163,7 @@ https://cds.cern.ch/record/1100534/files/p73.pdf
 ### Observer Design, Kalman Filter
   * Control theory by S. Simrock - section 8.1:
 https://cds.cern.ch/record/1100534/files/p73.pdf
+  * Kalman Filters, discrete and contininous (MAE598, LMIs in Control) - https://youtu.be/Ahzg-Tj7aEU
 
 ### Parameter estimation
   * Control theory by S. Simrock - section 9:
