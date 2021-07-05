@@ -99,7 +99,7 @@ http://www3.imperial.ac.uk/pls/portallive/docs/1/31851696.PDF
   * 8.3 Transfer Functions
 * Control theory by S. Simrock - sections 2, 3 and 4:
 https://cds.cern.ch/record/1100534/files/p73.pdf
-* (Advanced) Systems and signals - backgrund information for block diagrams (MAE598, LMIs in Control) - https://youtu.be/PM5tDcWEZgk
+* (Advanced) Systems and signals - background information for block diagrams (MAE598, LMIs in Control) - https://youtu.be/PM5tDcWEZgk
 * (Advanced) Laplace transform and H-norms (MAE598, LMIs in Control) - https://youtu.be/aL8PG8H1dp8
 * (Advanced) Proper transfer functions, KYP Lemma (MAE598, LMIs in Control) - https://youtu.be/H-673uXX9FI
 
@@ -134,6 +134,7 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-241j-d
 ## Lecture 9 LQR
 * (Underactuated Robotics) Linear Quadratic Regulators - http://underactuated.mit.edu/lqr.html
 * (CS 287: Advanced Robotics, Fall 2015) infinite horizon discrete LQR as an interative procedure, linear and affine cases, LTI and LTV cases - https://people.eecs.berkeley.edu/~pabbeel/cs287-fa15/slides/lecture5-LQR.pdf
+* (advanced) connection between LQR and Kalman Filter (MAE598, LMIs in Control) - https://youtu.be/Ahzg-Tj7aEU?t=1490
 
 ## Lecture 10 Observers
 *  Observers and the Separation Principle - https://www.dynsyslab.org/archive/RecEst2011/www.idsc.ethz.ch/Courses/Archives/Recursive_Estimation/recursive_estimation_2011/LectureNotes/RE_Lecture11_v1.pdf
@@ -164,6 +165,7 @@ https://cds.cern.ch/record/1100534/files/p73.pdf
   * Control theory by S. Simrock - section 8.1:
 https://cds.cern.ch/record/1100534/files/p73.pdf
   * Kalman Filters, discrete and contininous (MAE598, LMIs in Control) - https://youtu.be/Ahzg-Tj7aEU
+  * An LMI for the Kalman Filter - https://en.wikibooks.org/wiki/LMIs_in_Control/Applications/An_LMI_for_the_Kalman_Filter
 
 ### Parameter estimation
   * Control theory by S. Simrock - section 9:
