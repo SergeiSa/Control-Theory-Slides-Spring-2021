@@ -170,3 +170,6 @@ https://cds.cern.ch/record/1100534/files/p73.pdf
 ### Parameter estimation
   * Control theory by S. Simrock - section 9:
 https://cds.cern.ch/record/1100534/files/p73.pdf
+
+### Difference between linear and non-linear dynamics
+  * Intro to Nonlinear Systems, Existence and Uniqueness (MAE598, LMIs in Control) - https://youtu.be/oXFPeP-1F0g
