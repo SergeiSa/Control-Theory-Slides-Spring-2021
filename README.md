@@ -16,8 +16,7 @@
 
 # Lecture videos 
 
-([playlist](https://www.youtube.com/watch?v=x2cYtqJR-qg&list=PLlxR_sEKjSpTyteBJYJR6WBuAlPineEwz))
-
+* [**Full playlist**](https://www.youtube.com/watch?v=x2cYtqJR-qg&list=PLlxR_sEKjSpTyteBJYJR6WBuAlPineEwz)
 * [Lecture 2 ](https://youtu.be/x2cYtqJR-qg)
 * [Lecture 4 ](https://youtu.be/geeaciySBHY)
 * [Lecture 5 ](https://youtu.be/c9yNjq2vtpw)
