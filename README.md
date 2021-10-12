@@ -33,12 +33,12 @@
 # Labs
 
 * Assignment / lab / submission / gradable item \# 1: 
-* * [colab](./ColabNotebooks/Lab1_Control2021.ipynb)
+  * [colab](./ColabNotebooks/Lab1_Control2021.ipynb)
 * Assignment / lab / submission / gradable item \# 2:
-* * [colab](./ColabNotebooks/Lab2_Control2021.ipynb)
-* * [PDF](./ColabNotebooks/Lab2_Control2021.pdf)
+  * [colab](./ColabNotebooks/Lab2_Control2021.ipynb)
+  * [PDF](./ColabNotebooks/Lab2_Control2021.pdf)
 * Assignment / lab / submission / gradable item \# 3:
-* * [colab](./ColabNotebooks/Lab_3.ipynb)
+  * [colab](./ColabNotebooks/Lab_3.ipynb)
 
 # Self-study with Colab
 
